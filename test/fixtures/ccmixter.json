@@ -1,0 +1,166 @@
+[
+ {
+  "upload_id": 71194,
+  "upload_name": "Restful Piano - \"Distant Trees Sway\"",
+  "upload_extra": {
+   "usertags": "instrumental,dreamy_piano,quiet_piano,peaceful_piano,meditative_piano,reflective_piano,relaxing_piano,sentimental_piano,soothing_piano,tranquil_piano,calm_piano,royalty_free_piano,copyright_free_piano",
+   "ccud": "sample,media",
+   "systags": "attribution,audio,mp3,44k,stereo,VBR,audio,flac,192k,stereo,VBR",
+   "bpm": "",
+   "featuring": "",
+   "relative_dir": "content/matthew_c_wright",
+   "nsfw": false,
+   "last_op": "add"
+  },
+  "user_name": "matthew_c_wright",
+  "upload_tags": ",sample,media,multiple_formats,attribution,audio,mp3,44k,stereo,VBR,flac,192k,instrumental,dreamy_piano,quiet_piano,peaceful_piano,meditative_piano,reflective_piano,relaxing_piano,sentimental_piano,soothing_piano,tranquil_piano,calm_piano,royalty_free_piano,copyright_free_piano,",
+  "upload_num_scores": 1,
+  "file_page_url": "https://ccmixter.org/files/matthew_c_wright/71194",
+  "user_real_name": "matthew_c_wright",
+  "artist_page_url": "https://ccmixter.org/people/matthew_c_wright",
+  "license_logo_url": "https://ccmixter.org/ccskins/shared/images/lics/small-by-3.png",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_name": "Attribution (4.0)",
+  "upload_date_format": "Wed, Sep 23, 2026 @ 3:35 PM",
+  "files": [
+   {
+    "file_id": 130200,
+    "file_upload": 71194,
+    "file_name": "matthew_c_wright_-_Restful_Piano_-_Distant_Trees_Sway_.mp3",
+    "file_nicname": "mp3",
+    "file_format_info": {
+     "media-type": "audio",
+     "format-name": "audio-mp3-mp3",
+     "default-ext": "mp3",
+     "mime_type": "audio/mpeg",
+     "sr": "44k",
+     "ch": "stereo",
+     "ps": "2:58",
+     "br": "VBR"
+    },
+    "file_extra": {
+     "sha1": "YEMZIWVIQKHP4DV74YORBFGJLHLTRPXY"
+    },
+    "file_filesize": " (4.89MB)",
+    "file_order": 0,
+    "file_is_remote": 0,
+    "file_num_download": 0,
+    "download_url": "https://ccmixter.org/content/matthew_c_wright/matthew_c_wright_-_Restful_Piano_-_Distant_Trees_Sway_.mp3",
+    "local_path": "/var/www/ccmixter/content/matthew_c_wright/matthew_c_wright_-_Restful_Piano_-_Distant_Trees_Sway_.mp3",
+    "file_rawsize": 5130397
+   },
+   {
+    "file_id": 130201,
+    "file_upload": 71194,
+    "file_name": "matthew_c_wright_-_Restful_Piano_-_Distant_Trees_Sway_.flac",
+    "file_nicname": "Altnerate File Format",
+    "file_format_info": {
+     "media-type": "audio",
+     "format-name": "audio-flac-flac",
+     "default-ext": "flac",
+     "mime_type": "audio/x-flac",
+     "sr": "192k",
+     "ch": "stereo",
+     "ps": "2:58",
+     "br": "VBR"
+    },
+    "file_extra": {
+     "ccud": "multiple_formats",
+     "type": "multiple_formats",
+     "sha1": "522NI6ZIORPVRVNNUIP4SSBTL6IHSFZK"
+    },
+    "file_filesize": " (49.76MB)",
+    "file_order": 1,
+    "file_is_remote": 0,
+    "file_num_download": 0,
+    "download_url": "https://ccmixter.org/content/matthew_c_wright/matthew_c_wright_-_Restful_Piano_-_Distant_Trees_Sway_.flac",
+    "local_path": "/var/www/ccmixter/content/matthew_c_wright/matthew_c_wright_-_Restful_Piano_-_Distant_Trees_Sway_.flac",
+    "file_rawsize": 52177347
+   }
+  ],
+  "upload_description_plain": "Distant Trees Sway\r\n\r\nOriginal instrumental piano music by Matthew C. Wright.\r\n\r\nA slow, calming piano track for relaxation.\r\n\r\nHello everyone, I'm happy to share with you my latest upload :)\r\nListen everywhere\r\nIf you would like to conveniently listen to this song, it is also available all major streaming services: listen on your preferred platform\r\n\r\nUse it in your project\r\nThis recording is released under Creative Commons Attribution 4.0. You can use it in your own projects, including commercial projects, as long as you give visible credit.\r\n\r\nAttribution (pleas paste this visibly where you use this song!):\r\nMusic by Matthew C. Wright (matthewcwright.com)\r\nListen on all platforms: https://matthewcwright.com/1tawv\r\nLicense: Creative Commons Attribution 4.0 International (CC BY 4.0)\r\n\r\nMore from Matthew:\r\nFree music, sheet music, and projects: matthewcwright.com\r\n\r\nPlease let me know if you use this song anywhere. I would love to check out your work.\r\n\r\nThis music is 100% composed and produced by a human. No AI was used.",
+  "upload_description_html": "<span class=\"big\"><span class=\"b\">Distant Trees Sway</span></span><br />\r\n<br />\r\n<span class=\"i\">Original instrumental piano music by Matthew C. Wright.</span><br />\r\n<br />\r\nA slow, calming piano track for relaxation.<br />\r\n<br />\r\nHello everyone, I&#8217;m happy to share with you my latest upload :)<br />\r\n<span class=\"blue\"><span class=\"b\">Listen everywhere</span></span><br />\r\nIf you would like to conveniently listen to this song, it is also available all major streaming services:  <a title=\"https://matthewcwright.com/1tawv\" class=\"cc_format_link\" href=\"https://matthewcwright.com/1tawv\">listen on your preferred platform</a><br />\r\n<br />\r\n<span class=\"green\"><span class=\"b\">Use it in your project</span></span><br />\r\nThis recording is released under Creative Commons Attribution 4.0. You can use it in your own projects, including commercial projects, as long as you give visible credit.<br />\r\n<br />\r\n<span class=\"b\">Attribution (pleas paste this visibly where you use this song!):</span><br />\r\nMusic by Matthew C. Wright ( <a title=\"https://matthewcwright.com\" class=\"cc_format_link\" href=\"https://matthewcwright.com\">matthewcwright.com</a>)<br />\r\nListen on all platforms:  <a title=\"https://matthewcwright.com/1tawv\" class=\"cc_format_link\" href=\"https://matthewcwright.com/1tawv\">https://matthewcwright.com/1tawv</a><br />\r\nLicense:  <a title=\"https://creativecommons.org/licenses/by/4.0/\" class=\"cc_format_link\" href=\"https://creativecommons.org/licenses/by/4.0/\">Creative Commons Attribution 4.0 International (CC BY 4.0)</a><br />\r\n<br />\r\n<span class=\"b\">More from Matthew:</span><br />\r\nFree music, sheet music, and projects:  <a title=\"https://matthewcwright.com\" class=\"cc_format_link\" href=\"https://matthewcwright.com\">matthewcwright.com</a><br />\r\n<br />\r\nPlease let me know if you use this song anywhere. I would love to check out your work.<br />\r\n<br />\r\n<span class=\"small\">This music is 100% composed and produced by a human. No AI was used.</span>"
+ },
+ {
+  "upload_id": 71193,
+  "upload_name": "Calming Piano - \"Home Again\"",
+  "upload_extra": {
+   "usertags": "instrumental,dreamy_piano,quiet_piano,peaceful_piano,meditative_piano,reflective_piano,relaxing_piano,sentimental_piano,soothing_piano,tranquil_piano,calm_piano,royalty_free_piano,copyright_free_piano",
+   "ccud": "sample,media",
+   "systags": "attribution,audio,mp3,44k,stereo,VBR,audio,flac,44k,stereo,VBR",
+   "bpm": "",
+   "featuring": "",
+   "relative_dir": "content/matthew_c_wright",
+   "nsfw": false,
+   "last_op": "add"
+  },
+  "user_name": "matthew_c_wright",
+  "upload_tags": ",sample,media,multiple_formats,attribution,audio,mp3,44k,stereo,VBR,flac,instrumental,dreamy_piano,quiet_piano,peaceful_piano,meditative_piano,reflective_piano,relaxing_piano,sentimental_piano,soothing_piano,tranquil_piano,calm_piano,royalty_free_piano,copyright_free_piano,",
+  "upload_num_scores": 1,
+  "file_page_url": "https://ccmixter.org/files/matthew_c_wright/71193",
+  "user_real_name": "matthew_c_wright",
+  "artist_page_url": "https://ccmixter.org/people/matthew_c_wright",
+  "license_logo_url": "https://ccmixter.org/ccskins/shared/images/lics/small-by-3.png",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_name": "Attribution (4.0)",
+  "upload_date_format": "Wed, Sep 23, 2026 @ 3:34 PM",
+  "files": [
+   {
+    "file_id": 130198,
+    "file_upload": 71193,
+    "file_name": "matthew_c_wright_-_Calming_Piano_-_Home_Again_.mp3",
+    "file_nicname": "mp3",
+    "file_format_info": {
+     "media-type": "audio",
+     "format-name": "audio-mp3-mp3",
+     "default-ext": "mp3",
+     "mime_type": "audio/mpeg",
+     "sr": "44k",
+     "ch": "stereo",
+     "ps": "4:53",
+     "br": "VBR"
+    },
+    "file_extra": {
+     "sha1": "X2G5EHEMHBSOBYD7NEQH25UFPSANH6KQ"
+    },
+    "file_filesize": " (7.29MB)",
+    "file_order": 0,
+    "file_is_remote": 0,
+    "file_num_download": 0,
+    "download_url": "https://ccmixter.org/content/matthew_c_wright/matthew_c_wright_-_Calming_Piano_-_Home_Again_.mp3",
+    "local_path": "/var/www/ccmixter/content/matthew_c_wright/matthew_c_wright_-_Calming_Piano_-_Home_Again_.mp3",
+    "file_rawsize": 7643585
+   },
+   {
+    "file_id": 130199,
+    "file_upload": 71193,
+    "file_name": "matthew_c_wright_-_Calming_Piano_-_Home_Again_.flac",
+    "file_nicname": "Altnerate File Format",
+    "file_format_info": {
+     "media-type": "audio",
+     "format-name": "audio-flac-flac",
+     "default-ext": "flac",
+     "mime_type": "audio/x-flac",
+     "sr": "44k",
+     "ch": "stereo",
+     "ps": "4:53",
+     "br": "VBR"
+    },
+    "file_extra": {
+     "ccud": "multiple_formats",
+     "type": "multiple_formats",
+     "sha1": "O2BDBTUYSNSNGEBYIXPEDJUE35EMBWLG"
+    },
+    "file_filesize": " (14.52MB)",
+    "file_order": 1,
+    "file_is_remote": 0,
+    "file_num_download": 0,
+    "download_url": "https://ccmixter.org/content/matthew_c_wright/matthew_c_wright_-_Calming_Piano_-_Home_Again_.flac",
+    "local_path": "/var/www/ccmixter/content/matthew_c_wright/matthew_c_wright_-_Calming_Piano_-_Home_Again_.flac",
+    "file_rawsize": 15222884
+   }
+  ],
+  "upload_description_plain": "Home Again\r\n\r\nOriginal instrumental piano music by Matthew C. Wright.\r\n\r\nA slow, calming piano track for relaxation.\r\n\r\nHello everyone, I'm happy to share with you my latest upload :)\r\nListen everywhere\r\nIf you would like to conveniently listen to this song, it is also available all major streaming services: listen on your preferred platform\r\n\r\nUse it in your project\r\nThis recording is released under Creative Commons Attribution 4.0. You can use it in your own projects, including commercial projects, as long as you give visible credit.\r\n\r\nAttribution (pleas paste this visibly where you use this song!):\r\nMusic by Matthew C. Wright (matthewcwright.com)\r\nListen on all platforms: https://matthewcwright.com/yr7y4\r\nLicense: Creative Commons Attribution 4.0 International (CC BY 4.0)\r\n\r\nMore from Matthew:\r\nFree music, sheet music, and projects: matthewcwright.com\r\n\r\nPlease let me know if you use this song anywhere. I would love to check out your work.\r\n\r\nThis music is 100% composed and produced by a human. No AI was used.",
+  "upload_description_html": "<span class=\"big\"><span class=\"b\">Home Again</span></span><br />\r\n<br />\r\n<span class=\"i\">Original instrumental piano music by Matthew C. Wright.</span><br />\r\n<br />\r\nA slow, calming piano track for relaxation.<br />\r\n<br />\r\nHello everyone, I&#8217;m happy to share with you my latest upload :)<br />\r\n<span class=\"blue\"><span class=\"b\">Listen everywhere</span></span><br />\r\nIf you would like to conveniently listen to this song, it is also available all major streaming services:  <a title=\"https://matthewcwright.com/yr7y4\" class=\"cc_format_link\" href=\"https://matthewcwright.com/yr7y4\">listen on your preferred platform</a><br />\r\n<br />\r\n<span class=\"green\"><span class=\"b\">Use it in your project</span></span><br />\r\nThis recording is released under Creative Commons Attribution 4.0. You can use it in your own projects, including commercial projects, as long as you give visible credit.<br />\r\n<br />\r\n<span class=\"b\">Attribution (pleas paste this visibly where you use this song!):</span><br />\r\nMusic by Matthew C. Wright ( <a title=\"https://matthewcwright.com\" class=\"cc_format_link\" href=\"https://matthewcwright.com\">matthewcwright.com</a>)<br />\r\nListen on all platforms:  <a title=\"https://matthewcwright.com/yr7y4\" class=\"cc_format_link\" href=\"https://matthewcwright.com/yr7y4\">https://matthewcwright.com/yr7y4</a><br />\r\nLicense:  <a title=\"https://creativecommons.org/licenses/by/4.0/\" class=\"cc_format_link\" href=\"https://creativecommons.org/licenses/by/4.0/\">Creative Commons Attribution 4.0 International (CC BY 4.0)</a><br />\r\n<br />\r\n<span class=\"b\">More from Matthew:</span><br />\r\nFree music, sheet music, and projects:  <a title=\"https://matthewcwright.com\" class=\"cc_format_link\" href=\"https://matthewcwright.com\">matthewcwright.com</a><br />\r\n<br />\r\nPlease let me know if you use this song anywhere. I would love to check out your work.<br />\r\n<br />\r\n<span class=\"small\">This music is 100% composed and produced by a human. No AI was used.</span>"
+ }
+]
