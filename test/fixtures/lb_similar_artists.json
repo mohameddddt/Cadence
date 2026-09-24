@@ -1,0 +1,56 @@
+[
+ {
+  "artist_mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50",
+  "name": "David Bowie",
+  "comment": "English singer\u2010songwriter",
+  "type": "Person",
+  "gender": "Male",
+  "score": 13468,
+  "reference_mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+ },
+ {
+  "artist_mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+  "name": "The Beatles",
+  "comment": "UK rock band, \u201cThe Fab Four\u201d",
+  "type": "Group",
+  "gender": null,
+  "score": 11041,
+  "reference_mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+ },
+ {
+  "artist_mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3",
+  "name": "Led Zeppelin",
+  "comment": "",
+  "type": "Group",
+  "gender": null,
+  "score": 9854,
+  "reference_mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+ },
+ {
+  "artist_mbid": "83d91898-7763-47d7-b03b-b92132375c47",
+  "name": "Pink Floyd",
+  "comment": "",
+  "type": "Group",
+  "gender": null,
+  "score": 9805,
+  "reference_mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+ },
+ {
+  "artist_mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598",
+  "name": "The Rolling Stones",
+  "comment": "",
+  "type": "Group",
+  "gender": null,
+  "score": 9357,
+  "reference_mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+ },
+ {
+  "artist_mbid": "66c662b6-6e2f-4930-8610-912e24c63ed1",
+  "name": "AC/DC",
+  "comment": "Australian hard rock band",
+  "type": "Group",
+  "gender": null,
+  "score": 8713,
+  "reference_mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+ }
+]

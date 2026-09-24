@@ -1,0 +1,36 @@
+{
+ "data": [
+  {
+   "id": 135041032,
+   "name": "Queen(Ares)",
+   "link": "https://www.deezer.com/artist/135041032",
+   "picture": "https://api.deezer.com/artist/135041032/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/a131ced363dd67249e6a9167164188cb/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/a131ced363dd67249e6a9167164188cb/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/a131ced363dd67249e6a9167164188cb/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/a131ced363dd67249e6a9167164188cb/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 3,
+   "nb_fan": 176,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/135041032/top?limit=50",
+   "type": "artist"
+  },
+  {
+   "id": 61045802,
+   "name": "Queen",
+   "link": "https://www.deezer.com/artist/61045802",
+   "picture": "https://api.deezer.com/artist/61045802/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/06188edd60dc4b04a5520a3a75a1059a/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/06188edd60dc4b04a5520a3a75a1059a/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/06188edd60dc4b04a5520a3a75a1059a/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/06188edd60dc4b04a5520a3a75a1059a/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 5,
+   "nb_fan": 364,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/61045802/top?limit=50",
+   "type": "artist"
+  }
+ ],
+ "total": 100,
+ "next": "https://api.deezer.com/search/artist?q=Queen&limit=2&index=2"
+}

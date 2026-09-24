@@ -1,0 +1,4 @@
+{"similartracks":{"track":[
+ {"name":"Somebody to Love","playcount":"5000000","match":1,"mbid":"a0f5a6b5-0000-4000-8000-000000000001","url":"https://www.last.fm/music/Queen/_/Somebody+to+Love","duration":"296","artist":{"name":"Queen","mbid":"0383dadf-2a4e-4d10-a46a-e9e041da8eb3"}},
+ {"name":"Stairway to Heaven","playcount":"4000000","match":0.6,"mbid":"","url":"https://www.last.fm/music/Led+Zeppelin/_/Stairway+to+Heaven","duration":"482","artist":{"name":"Led Zeppelin","mbid":"678d88b2-87b0-403b-b63d-5da7465aecc3"}}
+],"@attr":{"artist":"Queen","track":"Bohemian Rhapsody"}}}

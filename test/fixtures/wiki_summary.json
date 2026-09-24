@@ -1,0 +1,49 @@
+{
+ "type": "standard",
+ "title": "Queen (band)",
+ "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Queen (band)</span></span>",
+ "namespace": {
+  "id": 0,
+  "text": ""
+ },
+ "wikibase_item": "Q15862",
+ "titles": {
+  "canonical": "Queen_(band)",
+  "normalized": "Queen (band)",
+  "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Queen (band)</span></span>"
+ },
+ "pageid": 42010,
+ "thumbnail": {
+  "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg/330px-Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "width": 330,
+  "height": 210
+ },
+ "originalimage": {
+  "source": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "width": 1798,
+  "height": 1146
+ },
+ "lang": "en",
+ "dir": "ltr",
+ "revision": "1376459276",
+ "tid": "3bde9564-b7e6-11f1-b40b-27681c3635e4",
+ "timestamp": "2026-09-24T07:04:50Z",
+ "description": "British rock band",
+ "description_source": "local",
+ "content_urls": {
+  "desktop": {
+   "page": "https://en.wikipedia.org/wiki/Queen_(band)",
+   "revisions": "https://en.wikipedia.org/wiki/Queen_(band)?action=history",
+   "edit": "https://en.wikipedia.org/wiki/Queen_(band)?action=edit",
+   "talk": "https://en.wikipedia.org/wiki/Talk:Queen_(band)"
+  },
+  "mobile": {
+   "page": "https://en.wikipedia.org/wiki/Queen_(band)",
+   "revisions": "https://en.wikipedia.org/wiki/Special:History/Queen_(band)",
+   "edit": "https://en.wikipedia.org/wiki/Queen_(band)?action=edit",
+   "talk": "https://en.wikipedia.org/wiki/Talk:Queen_(band)"
+  }
+ },
+ "extract": "Queen are a British rock band formed in London in 1970 by Freddie Mercury, Brian May, and Roger Taylor, and later joined by John Deacon (bass). Their earliest works were influenced by progressive rock, hard rock and heavy metal, but the band gradually ventured into more conventional and radio-friendly works by incorporating further styles, such as arena rock and pop rock.",
+ "extract_html": "<p><b>Queen</b> are a British rock band formed in London in 1970 by Freddie Mercury, Brian May, and Roger Taylor, and later joined by John Deacon (bass). Their earliest works were influenced by progressive rock, hard rock and heavy metal, but the band gradually ventured into more conventional and radio-friendly works by incorporating further styles, such as arena rock and pop rock.</p>"
+}
