@@ -1,0 +1,5 @@
+{"meta":{"status":200},"response":{"hits":[
+ {"type":"song","index":"song","result":{"id":1063,"title":"Bohemian Rhapsody","artist_names":"Queen","url":"https://genius.com/Queen-bohemian-rhapsody-lyrics","song_art_image_thumbnail_url":"https://images.genius.com/thumb.jpg","header_image_url":"https://images.genius.com/header.jpg","annotation_count":210,"primary_artist":{"name":"Queen"}}},
+ {"type":"song","index":"song","result":{"id":999,"title":"Bohemian Rhapsody (Live)","artist_names":"Someone Else","url":"https://genius.com/x","annotation_count":0}},
+ {"type":"artist","index":"artist","result":{"id":5,"name":"Queen"}}
+]}}
