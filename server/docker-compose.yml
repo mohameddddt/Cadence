@@ -1,0 +1,15 @@
+services:
+  musicplayer-server:
+    build: .
+    restart: unless-stopped
+    environment:
+      # Required. Generate one with:  openssl rand -hex 24
+      MP_TOKEN: ${MP_TOKEN:?set MP_TOKEN in .env}
+      MP_WORKERS: "2"
+      # Optional cookies for age-restricted / members content (your own account):
+      # MP_COOKIES: /data/cookies.txt
+    volumes:
+      - ./data:/data
+    # Bind to your Tailscale / LAN address instead of 0.0.0.0 if you can:
+    ports:
+      - "8000:8000"
