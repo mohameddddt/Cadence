@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - server/**
+
+linter:
+  rules:
+    use_null_aware_elements: false
+    prefer_initializing_formals: false
+    avoid_print: true
