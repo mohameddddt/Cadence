@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- youtubedl-android loads its bundled yt-dlp via R.raw.ytdlp, which the resource shrinker cannot
+     see. Without this the release APK ships a stub instead of yt-dlp ("zipimport: bad local file
+     header") while debug builds work fine. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@raw/ytdlp" />
