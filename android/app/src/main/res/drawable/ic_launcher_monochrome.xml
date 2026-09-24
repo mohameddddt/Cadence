@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Single-colour Cadence mark for Android 13+ themed icons. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M73.15,70.07 A25,25 0 1,1 73.15,37.93"
+        android:strokeColor="#FF000000"
+        android:strokeWidth="6.6"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M64.72,63.0 A14,14 0 1,1 64.72,45.0"
+        android:strokeColor="#FF000000"
+        android:strokeWidth="6.6"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M48.5,54 a5.5,5.5 0 1,0 11,0 a5.5,5.5 0 1,0 -11,0z" />
+</vector>
