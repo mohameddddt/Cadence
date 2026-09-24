@@ -1,0 +1,30 @@
+name: yt-dlp canary
+
+# Weekly check that yt-dlp can still download from the sites we rely on, so breakage is noticed
+# before users hit it. Uses Creative Commons material only.
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install -U yt-dlp
+      - name: Internet Archive (public domain)
+        run: bash tool/canary.sh archive
+      - name: YouTube (Blender Foundation, CC BY)
+        # GitHub's datacenter IPs are often bot-checked by YouTube; a failure here is a signal to
+        # look, not necessarily a regression in the app.
+        continue-on-error: true
+        run: bash tool/canary.sh youtube
+      - name: SoundCloud (CC track)
+        continue-on-error: true
+        run: bash tool/canary.sh soundcloud
