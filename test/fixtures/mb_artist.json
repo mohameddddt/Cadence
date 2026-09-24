@@ -1,0 +1,1292 @@
+{
+ "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+ "name": "Queen",
+ "relations": [
+  {
+   "source-credit": "",
+   "type": "allmusic",
+   "type-id": "6b3e3c85-0002-4f34-aca6-80ace0d7e846",
+   "attribute-values": {},
+   "target-type": "url",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "36c3f16d-36af-4d12-a353-4a245a87f774",
+    "resource": "https://www.allmusic.com/artist/mn0000858827"
+   },
+   "direction": "forward",
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {}
+  },
+  {
+   "type-id": "d028a975-000c-4525-9333-d3c8425e4b54",
+   "attribute-values": {},
+   "target-type": "url",
+   "attributes": [],
+   "end": "2020-11-19",
+   "direction": "forward",
+   "url": {
+    "resource": "https://www.bbc.co.uk/music/artists/0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+    "id": "06cf1afe-fbdc-45e5-ba84-f774c923e962"
+   },
+   "ended": true,
+   "target-credit": "",
+   "begin": null,
+   "attribute-ids": {},
+   "source-credit": "",
+   "type": "BBC Music page"
+  },
+  {
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "c8ab8b61-045c-4d28-a079-304f226e9092",
+    "resource": "http://www.queenonstage.com/"
+   },
+   "direction": "forward",
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "4fb0eeec-a6eb-4ae3-ad52-b55765b94e8f",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "discography page",
+   "source-credit": ""
+  },
+  {
+   "source-credit": "",
+   "type": "discography page",
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "4fb0eeec-a6eb-4ae3-ad52-b55765b94e8f",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "url": {
+    "resource": "http://www.queenpedia.com/",
+    "id": "2684ea9a-4acb-48b7-849e-7f68dcb981d3"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": []
+  },
+  {
+   "type": "discography page",
+   "source-credit": "",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "direction": "forward",
+   "url": {
+    "id": "303dbcdf-c2e5-4c97-8141-92e7e0f8e22a",
+    "resource": "http://www.queensongs.info/"
+   },
+   "attributes": [],
+   "end": null,
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "4fb0eeec-a6eb-4ae3-ad52-b55765b94e8f"
+  },
+  {
+   "type": "discogs",
+   "source-credit": "",
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "resource": "https://www.discogs.com/artist/81013",
+    "id": "373d8996-9501-405c-ae8f-137f14192f79"
+   },
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "04a5b104-a4c2-4bac-99a1-7b837c37d9e4",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "target-type": "url",
+   "type-id": "f484f897-81cc-406e-96f9-cd799a04ee24",
+   "attribute-values": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "c2795d05-0c6f-4e79-93f4-2e1368cae216",
+    "resource": "http://queen.musichall.cz/en/"
+   },
+   "direction": "forward",
+   "source-credit": "",
+   "type": "fanpage"
+  },
+  {
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "http://queen.shanemcdonald.org/",
+    "id": "80f87e81-7238-400a-becf-493259f37e63"
+   },
+   "direction": "forward",
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "f484f897-81cc-406e-96f9-cd799a04ee24",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "fanpage",
+   "source-credit": ""
+  },
+  {
+   "source-credit": "",
+   "type": "fanpage",
+   "target-type": "url",
+   "type-id": "f484f897-81cc-406e-96f9-cd799a04ee24",
+   "attribute-values": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://shanemcdonald.ie/queen",
+    "id": "f75785a4-480b-46f4-9c03-3fab8ec63866"
+   },
+   "direction": "forward"
+  },
+  {
+   "type": "fanpage",
+   "source-credit": "",
+   "direction": "forward",
+   "url": {
+    "id": "a2048ab8-3423-46b0-9e00-6402b0784e1f",
+    "resource": "http://www.meddows.com/"
+   },
+   "attributes": [],
+   "end": null,
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-values": {},
+   "type-id": "f484f897-81cc-406e-96f9-cd799a04ee24",
+   "target-type": "url"
+  },
+  {
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "http://www.queenconcerts.com/",
+    "id": "c800b2df-8677-4daf-9c53-bb018b63a4a0"
+   },
+   "direction": "forward",
+   "target-type": "url",
+   "type-id": "f484f897-81cc-406e-96f9-cd799a04ee24",
+   "attribute-values": {},
+   "type": "fanpage",
+   "source-credit": ""
+  },
+  {
+   "type": "fanpage",
+   "source-credit": "",
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "direction": "forward",
+   "url": {
+    "resource": "http://www.queenfanclub.nl/",
+    "id": "1632f17f-5e19-4bee-adde-ec217c2381e6"
+   },
+   "attributes": [],
+   "end": null,
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "f484f897-81cc-406e-96f9-cd799a04ee24"
+  },
+  {
+   "type": "free streaming",
+   "source-credit": "",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "url": {
+    "resource": "https://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d",
+    "id": "4024e728-2438-4d1b-83df-952553597f36"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "769085a1-c2f7-4c24-a532-2375a77693bd"
+  },
+  {
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "769085a1-c2f7-4c24-a532-2375a77693bd",
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "direction": "forward",
+   "url": {
+    "id": "1ba2f2de-78c0-45a8-aa24-a119659c43b6",
+    "resource": "https://www.deezer.com/artist/412"
+   },
+   "attributes": [],
+   "end": null,
+   "source-credit": "",
+   "type": "free streaming"
+  },
+  {
+   "type": "IMDb",
+   "source-credit": "",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "5ca109cf-5c9c-46a7-8bfd-934c99b66f77",
+    "resource": "https://www.imdb.com/name/nm1277102/"
+   },
+   "direction": "forward",
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "94c8b0cc-4477-4106-932c-da60e63de61c",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "type": "last.fm",
+   "source-credit": "",
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://www.last.fm/music/Queen",
+    "id": "5c1d0714-9f28-4e07-a002-f2ee22188b4c"
+   },
+   "direction": "forward",
+   "target-type": "url",
+   "type-id": "08db8098-c0df-4b78-82c3-c8697b4bba7f",
+   "attribute-values": {}
+  },
+  {
+   "type": "lyrics",
+   "source-credit": "",
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "http://muzikum.eu/en/122-3908/queen/lyrics.html",
+    "id": "2ee4cbbe-20ae-4a02-8b5c-8ef9b932985b"
+   },
+   "direction": "forward",
+   "target-type": "url",
+   "type-id": "e4d73442-3762-45a8-905c-401da65544ed",
+   "attribute-values": {}
+  },
+  {
+   "source-credit": "",
+   "type": "lyrics",
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "e4d73442-3762-45a8-905c-401da65544ed",
+   "attribute-ids": {},
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "url": {
+    "resource": "https://genius.com/artists/Queen",
+    "id": "0b6dc047-9ad5-4227-8843-b1e63c6d3c90"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": []
+  },
+  {
+   "url": {
+    "resource": "https://www.musixmatch.com/artist/Queen",
+    "id": "cced8e72-7fb5-4dc3-97ad-13fbe23f5e5a"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-values": {},
+   "type-id": "e4d73442-3762-45a8-905c-401da65544ed",
+   "target-type": "url",
+   "type": "lyrics",
+   "source-credit": ""
+  },
+  {
+   "type": "myspace",
+   "source-credit": "",
+   "url": {
+    "id": "06357862-0747-413a-bbac-695304681b99",
+    "resource": "https://myspace.com/queen"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-values": {},
+   "type-id": "bac47923-ecde-4b59-822e-d08f0cd10156",
+   "target-type": "url"
+  },
+  {
+   "type": "official homepage",
+   "source-credit": "",
+   "direction": "forward",
+   "url": {
+    "id": "b5521f88-1972-4339-b1d3-1621637ae616",
+    "resource": "http://www.queenonline.com/"
+   },
+   "attributes": [],
+   "end": null,
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-values": {},
+   "type-id": "fe33d22f-c3b0-4d68-bd53-a856badf2b15",
+   "target-type": "url"
+  },
+  {
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "direction": "forward",
+   "url": {
+    "resource": "https://discord.com/invite/queenofficial",
+    "id": "13f4d2e6-4118-49ae-b4a3-c5a937d2d04f"
+   },
+   "attributes": [],
+   "end": null,
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "35b3a50f-bf0e-4309-a3b4-58eeed8cee6a",
+   "type": "online community",
+   "source-credit": ""
+  },
+  {
+   "type": "other databases",
+   "source-credit": "",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "36f575f7-9102-4bd1-aac6-2f5416c50044",
+    "resource": "http://id.loc.gov/authorities/names/n81144041"
+   },
+   "direction": "forward",
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "http://musicmoz.org/Bands_and_Artists/Q/Queen/",
+    "id": "f8137c49-222e-4671-8546-7ca64b9e4859"
+   },
+   "direction": "forward",
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "other databases",
+   "source-credit": ""
+  },
+  {
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "target-type": "url",
+   "direction": "forward",
+   "url": {
+    "id": "dff7276b-a853-45b2-89c6-4172935bf581",
+    "resource": "http://mvdbase.com/person.php?id=A1497"
+   },
+   "attributes": [],
+   "end": null,
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "source-credit": "",
+   "type": "other databases"
+  },
+  {
+   "target-type": "url",
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {},
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "resource": "https://catalogue.bnf.fr/ark:/12148/cb13905983b",
+    "id": "eb7804b3-418f-49f2-a824-d4621f320c97"
+   },
+   "source-credit": "",
+   "type": "other databases"
+  },
+  {
+   "source-credit": "",
+   "type": "other databases",
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "direction": "forward",
+   "url": {
+    "resource": "https://d-nb.info/gnd/1216393-4",
+    "id": "3db74a01-72e2-48ba-b2ef-10bec9da5080"
+   },
+   "attributes": [],
+   "end": null
+  },
+  {
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "target-type": "url",
+   "url": {
+    "resource": "https://imvdb.com/n/queen",
+    "id": "1bc1290b-b1ac-45e8-a65b-37c9ffb3b5ba"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "source-credit": "",
+   "type": "other databases"
+  },
+  {
+   "source-credit": "",
+   "type": "other databases",
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url",
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "resource": "https://nla.gov.au/nla.party-1252469",
+    "id": "f1549594-406a-41bb-9565-c027218177ca"
+   },
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {}
+  },
+  {
+   "type": "other databases",
+   "source-credit": "",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://openlibrary.org/works/OL2786044A",
+    "id": "6b1fc49e-b2c2-44c4-b039-ac78697cfd73"
+   },
+   "direction": "forward",
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "type": "other databases",
+   "source-credit": "",
+   "attribute-ids": {},
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "url": {
+    "resource": "http://soundtrackcollector.com/composer/255/",
+    "id": "231ca75a-eb2d-4c49-b857-eb46a7775e39"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55"
+  },
+  {
+   "type": "other databases",
+   "source-credit": "",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://rateyourmusic.com/artist/queen",
+    "id": "ab285eea-505e-421a-ab99-bfac8bf6336d"
+   },
+   "direction": "forward",
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-ids": {},
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "direction": "forward",
+   "url": {
+    "id": "f4b0c141-7e2a-493b-9e9e-d2c30b0b26ac",
+    "resource": "https://theatricalia.com/person/2fbw/queen"
+   },
+   "attributes": [],
+   "end": null,
+   "source-credit": "",
+   "type": "other databases"
+  },
+  {
+   "target-type": "url",
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://www.45cat.com/artist/queen",
+    "id": "0d663baa-b73f-4465-ae4c-16d6db718d23"
+   },
+   "direction": "forward",
+   "source-credit": "",
+   "type": "other databases"
+  },
+  {
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "3c592cb7-9918-4a8d-bc2f-6aac8bbceba4",
+    "resource": "https://www.livefans.jp/artists/21342"
+   },
+   "direction": "forward",
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "other databases",
+   "source-credit": ""
+  },
+  {
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "direction": "forward",
+   "url": {
+    "resource": "https://www.metalmusicarchives.com/artist/queen",
+    "id": "5745ded9-60c4-4030-8ba7-854f701bf8e2"
+   },
+   "attributes": [],
+   "end": null,
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "type": "other databases",
+   "source-credit": ""
+  },
+  {
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "resource": "https://www.musik-sammler.de/artist/queen/",
+    "id": "9a8af16c-e741-47de-ae71-6cf349224502"
+   },
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "other databases",
+   "source-credit": ""
+  },
+  {
+   "url": {
+    "resource": "https://www.muziekweb.nl/Link/M00000071922/POPULAR/",
+    "id": "d5fe2385-136d-4bde-af12-7e88d991734f"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "target-type": "url",
+   "type": "other databases",
+   "source-credit": ""
+  },
+  {
+   "type": "other databases",
+   "source-credit": "",
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "f7dbd7c1-2d1c-4892-b313-31b8549acff3",
+    "resource": "https://www.progarchives.com/artist.asp?id=1755"
+   },
+   "direction": "forward",
+   "target-type": "url",
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {}
+  },
+  {
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "url": {
+    "resource": "https://www.spirit-of-rock.com/en/band/Queen",
+    "id": "aa16c0f4-3b2d-4311-a52a-f65a6d387f75"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "source-credit": "",
+   "type": "other databases"
+  },
+  {
+   "type": "other databases",
+   "source-credit": "",
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "9b8982e1-fc4c-4293-acf4-4dc46488b3a6",
+    "resource": "https://www.whosampled.com/Queen/"
+   },
+   "direction": "forward",
+   "target-type": "url",
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "attribute-values": {}
+  },
+  {
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "url": {
+    "id": "abaf5d9a-86ec-42ad-b1d0-4386a904306d",
+    "resource": "https://www.worldcat.org/identities/lccn-n81144041"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+   "type": "other databases",
+   "source-credit": ""
+  },
+  {
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "f8319a2f-f824-4617-81c8-be6560b3b203",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": true,
+   "url": {
+    "resource": "https://play.google.com/store/music/artist?id=A52ikp5gjplylwfrj7bjwdfsozi",
+    "id": "5f6e9693-3600-4e6a-b5ee-b4f2e598899a"
+   },
+   "direction": "forward",
+   "end": "2020-10-12",
+   "attributes": [],
+   "source-credit": "",
+   "type": "purchase for download"
+  },
+  {
+   "attribute-values": {},
+   "type-id": "f8319a2f-f824-4617-81c8-be6560b3b203",
+   "target-type": "url",
+   "url": {
+    "id": "f3fcbc66-677b-4681-890a-4471cfc52d07",
+    "resource": "https://uk.7digital.com/artist/queen"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "source-credit": "",
+   "type": "purchase for download"
+  },
+  {
+   "url": {
+    "resource": "https://www.beatport.com/artist/queen/15204",
+    "id": "b6e4d949-d833-413d-94a6-c52978a83308"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-values": {},
+   "type-id": "f8319a2f-f824-4617-81c8-be6560b3b203",
+   "target-type": "url",
+   "type": "purchase for download",
+   "source-credit": ""
+  },
+  {
+   "source-credit": "",
+   "type": "purchase for download",
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "f8319a2f-f824-4617-81c8-be6560b3b203",
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": true,
+   "begin": null,
+   "direction": "forward",
+   "url": {
+    "id": "0737421a-0c9e-4165-9ee0-febda83f57d6",
+    "resource": "https://itunes.apple.com/gb/artist/id3296287"
+   },
+   "attributes": [],
+   "end": null
+  },
+  {
+   "type": "purchase for mail-order",
+   "source-credit": "",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "direction": "forward",
+   "url": {
+    "resource": "https://www.cdjapan.co.jp/person/700192881",
+    "id": "fff45347-032b-4c0a-86b8-a2232d05ac52"
+   },
+   "attributes": [],
+   "end": null,
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "611b1862-67af-4253-a64f-34adba305d1d"
+  },
+  {
+   "type": "secondhandsongs",
+   "source-credit": "",
+   "url": {
+    "id": "5d09a280-540b-4245-8fc7-523ef531285c",
+    "resource": "https://secondhandsongs.com/artist/374"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "attribute-values": {},
+   "type-id": "79c5b84d-a206-4f4c-9832-78c028c312c3",
+   "target-type": "url"
+  },
+  {
+   "type": "setlistfm",
+   "source-credit": "",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "783a686c-7a7e-4db3-9b8c-7c4bfc8249f2",
+    "resource": "https://www.setlist.fm/setlists/queen-43d6e37f.html"
+   },
+   "direction": "forward",
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "bf5d0d5e-27a1-4e94-9df7-3cdc67b3b207",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "type": "social network",
+   "source-credit": "",
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "3341c7e3-1a45-4d0d-9937-55082f477ad9",
+    "resource": "https://twitter.com/QueenWillRock"
+   },
+   "direction": "forward",
+   "begin": "2009-12-22",
+   "target-credit": "",
+   "ended": false,
+   "attribute-ids": {},
+   "type-id": "99429741-f3f6-484b-84f8-23af51991770",
+   "attribute-values": {},
+   "target-type": "url"
+  },
+  {
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "99429741-f3f6-484b-84f8-23af51991770",
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": "2014-06-12",
+   "direction": "forward",
+   "url": {
+    "id": "caaf7294-a187-47f3-8a8e-ea333084ebf9",
+    "resource": "https://www.instagram.com/officialqueenmusic/"
+   },
+   "attributes": [],
+   "end": null,
+   "source-credit": "",
+   "type": "social network"
+  },
+  {
+   "type": "social network",
+   "source-credit": "",
+   "url": {
+    "resource": "https://plus.google.com/111434746288415573196",
+    "id": "3aaa0d3d-26ac-4a7b-863b-b701dcdefd4b"
+   },
+   "direction": "forward",
+   "end": "2019-04-02",
+   "attributes": [],
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": true,
+   "attribute-values": {},
+   "type-id": "99429741-f3f6-484b-84f8-23af51991770",
+   "target-type": "url"
+  },
+  {
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://www.facebook.com/Queen",
+    "id": "1535a5f4-0934-471b-aec7-cabe3aef21a6"
+   },
+   "direction": "forward",
+   "target-type": "url",
+   "type-id": "99429741-f3f6-484b-84f8-23af51991770",
+   "attribute-values": {},
+   "type": "social network",
+   "source-credit": ""
+  },
+  {
+   "type": "social network",
+   "source-credit": "",
+   "direction": "forward",
+   "url": {
+    "resource": "https://www.tiktok.com/@queenofficial",
+    "id": "8d826660-0a7b-4018-9171-b4ab73772d02"
+   },
+   "attributes": [],
+   "end": null,
+   "attribute-ids": {},
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "attribute-values": {},
+   "type-id": "99429741-f3f6-484b-84f8-23af51991770",
+   "target-type": "url"
+  },
+  {
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "id": "e8a17c52-1e52-45ed-9540-3772a9281765",
+    "resource": "https://www.songkick.com/artists/469904"
+   },
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "aac9c4bc-a5b9-30b8-9839-e3ac314c6e58",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "songkick",
+   "source-credit": ""
+  },
+  {
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "89e4a949-0976-440d-bda1-5f772c1e5710",
+   "attribute-ids": {},
+   "target-credit": "",
+   "begin": null,
+   "ended": false,
+   "url": {
+    "resource": "https://soundcloud.com/queen-69312",
+    "id": "6db51d78-6d95-47ac-8f9d-d6e663b44fb6"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "source-credit": "",
+   "type": "soundcloud"
+  },
+  {
+   "direction": "forward",
+   "url": {
+    "id": "0161bce9-bfb9-4ff4-8ae4-29697006d13a",
+    "resource": "https://us.napster.com/artist/queen"
+   },
+   "attributes": [],
+   "end": "2022-06-08",
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": true,
+   "attribute-values": {},
+   "type-id": "63cc5d1f-f096-4c94-a43f-ecb32ea94161",
+   "target-type": "url",
+   "type": "streaming",
+   "source-credit": ""
+  },
+  {
+   "attribute-ids": {},
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "url": {
+    "id": "dfc89003-ce4d-46a3-ae29-e16a84f9fbdc",
+    "resource": "https://music.amazon.com/artists/B001DTRO4M"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "target-type": "url",
+   "attribute-values": {},
+   "type-id": "63cc5d1f-f096-4c94-a43f-ecb32ea94161",
+   "type": "streaming",
+   "source-credit": ""
+  },
+  {
+   "type": "streaming",
+   "source-credit": "",
+   "url": {
+    "id": "fd923ad9-13af-41df-a38b-b1a5f4af1413",
+    "resource": "https://music.apple.com/gb/artist/3296287"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-values": {},
+   "type-id": "63cc5d1f-f096-4c94-a43f-ecb32ea94161",
+   "target-type": "url"
+  },
+  {
+   "end": null,
+   "attributes": [],
+   "url": {
+    "resource": "https://music.apple.com/to/artist/3296287",
+    "id": "65607ca5-bff8-41e6-8327-bc68085e2150"
+   },
+   "direction": "forward",
+   "ended": false,
+   "target-credit": "",
+   "begin": null,
+   "attribute-ids": {},
+   "type-id": "63cc5d1f-f096-4c94-a43f-ecb32ea94161",
+   "attribute-values": {},
+   "target-type": "url",
+   "type": "streaming",
+   "source-credit": ""
+  },
+  {
+   "attribute-values": {},
+   "type-id": "63cc5d1f-f096-4c94-a43f-ecb32ea94161",
+   "target-type": "url",
+   "url": {
+    "resource": "https://tidal.com/artist/8992",
+    "id": "4f42a873-030c-4755-9f96-058570210df7"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "begin": null,
+   "target-credit": "",
+   "ended": false,
+   "source-credit": "",
+   "type": "streaming"
+  },
+  {
+   "url": {
+    "resource": "https://www.qobuz.com/gb-en/interpreter/queen/download-streaming-albums",
+    "id": "6feb5699-7576-4a60-a9a3-a7ddffd0e357"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-values": {},
+   "type-id": "63cc5d1f-f096-4c94-a43f-ecb32ea94161",
+   "target-type": "url",
+   "type": "streaming",
+   "source-credit": ""
+  },
+  {
+   "source-credit": "",
+   "type": "VIAF",
+   "attribute-values": {},
+   "type-id": "e8571dcc-35d4-4e91-a577-a3382fd84460",
+   "target-type": "url",
+   "url": {
+    "id": "1ab5b2f2-ca13-4205-a0dd-a2f07486f3ac",
+    "resource": "http://viaf.org/viaf/261960117"
+   },
+   "direction": "forward",
+   "end": null,
+   "attributes": [],
+   "attribute-ids": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null
+  },
+  {
+   "source-credit": "",
+   "type": "wikidata",
+   "target-type": "url",
+   "type-id": "689870a4-a1e4-4912-b17f-7b2664215698",
+   "attribute-values": {},
+   "target-credit": "",
+   "ended": false,
+   "begin": null,
+   "attribute-ids": {},
+   "end": null,
+   "attributes": [],
+   "url": {
+    "id": "3c4e21fb-0740-4a96-952b-4733b3e974b1",
+    "resource": "https://www.wikidata.org/wiki/Q15862"
+   },
+   "direction": "forward"
+  },
+  {
+   "type": "youtube",
+   "source-credit": "",
+   "ended": false,
+   "target-credit": "",
+   "begin": "2008-07-07",
+   "attribute-ids": {},
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "id": "0cd5a0dd-ae08-4312-9566-221e0ebdda27",
+    "resource": "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytRQ"
+   },
+   "target-type": "url",
+   "type-id": "6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0",
+   "attribute-values": {}
+  },
+  {
+   "type": "youtube music",
+   "source-credit": "",
+   "ended": false,
+   "target-credit": "",
+   "begin": "2013-05-16",
+   "attribute-ids": {},
+   "attributes": [],
+   "end": null,
+   "direction": "forward",
+   "url": {
+    "id": "96eb1084-2eb2-47de-98e1-18e4f780139c",
+    "resource": "https://music.youtube.com/channel/UCEPMVbUzImPl4p8k4LkGevA"
+   },
+   "target-type": "url",
+   "type-id": "631712a0-7525-42ba-b7a3-605aa7a238c4",
+   "attribute-values": {}
+  }
+ ],
+ "gender-id": null,
+ "area": {
+  "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+  "type-id": null,
+  "name": "United Kingdom",
+  "iso-3166-1-codes": [
+   "GB"
+  ],
+  "sort-name": "United Kingdom",
+  "disambiguation": "",
+  "type": null
+ },
+ "end-area": null,
+ "gender": null,
+ "disambiguation": "UK rock group",
+ "begin-area": {
+  "disambiguation": "Greater London",
+  "id": "f03d09b3-39dc-4083-afd6-159e3f0d462f",
+  "sort-name": "London",
+  "type-id": null,
+  "type": null,
+  "name": "London"
+ },
+ "sort-name": "Queen",
+ "ipis": [],
+ "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+ "type": "Group",
+ "country": "GB",
+ "isnis": [
+  "0000000115265309"
+ ],
+ "genres": [
+  {
+   "disambiguation": "",
+   "id": "b7ef058e-6d83-4ca4-8123-9724bff4648b",
+   "count": 15,
+   "name": "art rock"
+  },
+  {
+   "count": 1,
+   "disambiguation": "",
+   "id": "150eb95a-7739-4fde-a5fe-b62ca576a928",
+   "name": "baroque pop"
+  },
+  {
+   "name": "classic rock",
+   "count": 7,
+   "disambiguation": "",
+   "id": "93244085-20e5-4f16-9067-1d19143b3810"
+  },
+  {
+   "count": 1,
+   "disambiguation": "",
+   "id": "a04d680b-b5c5-4f6a-87a3-f9f1ff98e3ea",
+   "name": "disco"
+  },
+  {
+   "count": 24,
+   "disambiguation": "",
+   "id": "54d89e62-5bfb-42bc-a321-9230e6fdcd75",
+   "name": "glam rock"
+  },
+  {
+   "count": 21,
+   "disambiguation": "",
+   "id": "51cb9f91-e6a2-41bf-891f-e78e3f1e52ab",
+   "name": "hard rock"
+  },
+  {
+   "name": "pop rock",
+   "disambiguation": "",
+   "id": "797e2e85-5ffd-495c-a757-8b4079052f0e",
+   "count": 11
+  },
+  {
+   "name": "progressive rock",
+   "disambiguation": "",
+   "id": "ae9b8279-3959-48d8-8a88-741a7f6d4a48",
+   "count": 5
+  },
+  {
+   "name": "rock",
+   "count": 43,
+   "disambiguation": "",
+   "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798"
+  },
+  {
+   "name": "symphonic rock",
+   "id": "f729e6f8-30dc-4b81-9ff4-f4e7de82225d",
+   "disambiguation": "",
+   "count": 6
+  }
+ ],
+ "life-span": {
+  "ended": true,
+  "begin": "1970-06-27",
+  "end": null
+ }
+}

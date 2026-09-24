@@ -1,0 +1,660 @@
+{
+ "media": [
+  {
+   "format": "12\" Vinyl",
+   "id": "706c2634-d2f7-334e-b22a-901712def4eb",
+   "position": 1,
+   "track-offset": 0,
+   "track-count": 12,
+   "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
+   "title": "",
+   "tracks": [
+    {
+     "number": "A1",
+     "id": "4a7e3b12-68d7-3880-b3a9-cd38a95a5794",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "joinphrase": "",
+       "artist": {
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "sort-name": "Queen",
+        "name": "Queen",
+        "type": "Group",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "position": 1,
+     "length": 223733,
+     "title": "Death on Two Legs (Dedicated to…)",
+     "recording": {
+      "id": "a46d027a-39e0-4b47-b19b-bb7682839ac5",
+      "artist-credit": [
+       {
+        "joinphrase": "",
+        "name": "Queen",
+        "artist": {
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "type": "Group",
+         "name": "Queen",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "country": "GB",
+         "sort-name": "Queen"
+        }
+       }
+      ],
+      "disambiguation": "",
+      "video": false,
+      "first-release-date": "1975-11-21",
+      "length": 223293,
+      "title": "Death on Two Legs (Dedicated to…)"
+     }
+    },
+    {
+     "id": "432c2120-1a86-3cca-8c7f-b6e770ad03ea",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "joinphrase": "",
+       "artist": {
+        "type": "Group",
+        "country": "GB",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "sort-name": "Queen",
+        "name": "Queen",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "position": 2,
+     "number": "A2",
+     "title": "Lazing on a Sunday Afternoon",
+     "recording": {
+      "title": "Lazing on a Sunday Afternoon",
+      "length": 67400,
+      "video": false,
+      "first-release-date": "1975-11-21",
+      "id": "a69ca3a1-65ff-491a-b25e-fa2010963e26",
+      "artist-credit": [
+       {
+        "artist": {
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "type": "Group",
+         "name": "Queen",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "country": "GB",
+         "sort-name": "Queen"
+        },
+        "name": "Queen",
+        "joinphrase": ""
+       }
+      ],
+      "disambiguation": ""
+     },
+     "length": 67426
+    },
+    {
+     "title": "I’m in Love With My Car",
+     "recording": {
+      "first-release-date": "1975-11-21",
+      "video": false,
+      "id": "8c8cc498-39e7-440f-b937-21d1481cc3a0",
+      "artist-credit": [
+       {
+        "artist": {
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "disambiguation": "UK rock group",
+         "sort-name": "Queen",
+         "country": "GB",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "name": "Queen",
+         "type": "Group"
+        },
+        "name": "Queen",
+        "joinphrase": ""
+       }
+      ],
+      "disambiguation": "",
+      "length": 185053,
+      "title": "I’m in Love With My Car"
+     },
+     "length": 185440,
+     "id": "bf0fac02-4f3e-3a6e-9432-a89d5d30f4ab",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "joinphrase": "",
+       "artist": {
+        "type": "Group",
+        "name": "Queen",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "sort-name": "Queen",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "position": 3,
+     "number": "A3"
+    },
+    {
+     "recording": {
+      "length": 172000,
+      "title": "You’re My Best Friend",
+      "first-release-date": "1975-11-21",
+      "video": false,
+      "artist-credit": [
+       {
+        "artist": {
+         "type": "Group",
+         "name": "Queen",
+         "sort-name": "Queen",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "country": "GB",
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+        },
+        "name": "Queen",
+        "joinphrase": ""
+       }
+      ],
+      "id": "471dc436-80be-4f06-bc8f-7e2685876cfc",
+      "disambiguation": ""
+     },
+     "title": "You’re My Best Friend",
+     "length": 172666,
+     "artist-credit": [
+      {
+       "joinphrase": "",
+       "name": "Queen",
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group",
+        "country": "GB",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "sort-name": "Queen",
+        "name": "Queen",
+        "type": "Group"
+       }
+      }
+     ],
+     "id": "99f3fddf-3d26-34a0-9af1-f8570cf502b2",
+     "position": 4,
+     "number": "A4"
+    },
+    {
+     "recording": {
+      "length": 210853,
+      "title": "’39",
+      "disambiguation": "",
+      "id": "16d2c90d-d688-4465-bb76-4a9e94b80729",
+      "artist-credit": [
+       {
+        "artist": {
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "type": "Group",
+         "country": "GB",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "sort-name": "Queen",
+         "name": "Queen"
+        },
+        "name": "Queen",
+        "joinphrase": ""
+       }
+      ],
+      "first-release-date": "1975-11-21",
+      "video": false
+     },
+     "title": "’39",
+     "length": 211000,
+     "position": 5,
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "joinphrase": "",
+       "artist": {
+        "type": "Group",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "country": "GB",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "disambiguation": "UK rock group",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+       }
+      }
+     ],
+     "id": "39755dfb-da50-3ecb-9210-2c68179a456a",
+     "number": "A5"
+    },
+    {
+     "number": "A6",
+     "position": 6,
+     "artist-credit": [
+      {
+       "joinphrase": "",
+       "name": "Queen",
+       "artist": {
+        "name": "Queen",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "sort-name": "Queen",
+        "type": "Group",
+        "disambiguation": "UK rock group",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+       }
+      }
+     ],
+     "id": "43132ea6-71d5-31ed-b0f9-7a8ea3fc2fa8",
+     "length": 244400,
+     "recording": {
+      "disambiguation": "",
+      "id": "e787ac41-3aba-41b6-ad05-63ddb02b50b8",
+      "artist-credit": [
+       {
+        "name": "Queen",
+        "joinphrase": "",
+        "artist": {
+         "type": "Group",
+         "name": "Queen",
+         "sort-name": "Queen",
+         "country": "GB",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+        }
+       }
+      ],
+      "video": false,
+      "first-release-date": "1975-11-21",
+      "title": "Sweet Lady",
+      "length": 243693
+     },
+     "title": "Sweet Lady"
+    },
+    {
+     "number": "A7",
+     "id": "10595d85-01ef-3f7e-84e5-c14dfe4f8f32",
+     "artist-credit": [
+      {
+       "artist": {
+        "disambiguation": "UK rock group",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "sort-name": "Queen",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "name": "Queen",
+        "type": "Group"
+       },
+       "name": "Queen",
+       "joinphrase": ""
+      }
+     ],
+     "position": 7,
+     "length": 136826,
+     "title": "Seaside Rendezvous",
+     "recording": {
+      "title": "Seaside Rendezvous",
+      "length": 136826,
+      "first-release-date": "1975-11-21",
+      "video": false,
+      "id": "e26a4230-72bf-4fbe-b86b-2f045ebb2cb7",
+      "disambiguation": "",
+      "artist-credit": [
+       {
+        "artist": {
+         "name": "Queen",
+         "sort-name": "Queen",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "country": "GB",
+         "type": "Group",
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+        },
+        "name": "Queen",
+        "joinphrase": ""
+       }
+      ]
+     }
+    },
+    {
+     "length": 501466,
+     "recording": {
+      "id": "1709306b-e1a4-471f-ab6d-6c78ab0a55be",
+      "artist-credit": [
+       {
+        "artist": {
+         "sort-name": "Queen",
+         "country": "GB",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "name": "Queen",
+         "type": "Group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "disambiguation": "UK rock group"
+        },
+        "joinphrase": "",
+        "name": "Queen"
+       }
+      ],
+      "disambiguation": "",
+      "first-release-date": "1975-11-21",
+      "video": false,
+      "length": 501000,
+      "title": "The Prophet’s Song"
+     },
+     "title": "The Prophet’s Song",
+     "number": "B1",
+     "position": 8,
+     "artist-credit": [
+      {
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group",
+        "type": "Group",
+        "name": "Queen",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "sort-name": "Queen"
+       },
+       "joinphrase": "",
+       "name": "Queen"
+      }
+     ],
+     "id": "6b4dd7c2-7097-3233-9bad-22222c392595"
+    },
+    {
+     "number": "B2",
+     "id": "4d8f0ad5-c9e2-37a2-87bc-f8abae219847",
+     "artist-credit": [
+      {
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group",
+        "type": "Group",
+        "sort-name": "Queen",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "name": "Queen"
+       },
+       "name": "Queen",
+       "joinphrase": ""
+      }
+     ],
+     "position": 9,
+     "length": 219240,
+     "title": "Love of My Life",
+     "recording": {
+      "disambiguation": "",
+      "id": "aae7c914-d58d-4e25-b3a3-21bd0f565a54",
+      "artist-credit": [
+       {
+        "joinphrase": "",
+        "name": "Queen",
+        "artist": {
+         "disambiguation": "UK rock group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "country": "GB",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "sort-name": "Queen",
+         "name": "Queen",
+         "type": "Group"
+        }
+       }
+      ],
+      "video": false,
+      "first-release-date": "1975-11-21",
+      "length": 218560,
+      "title": "Love of My Life"
+     }
+    },
+    {
+     "position": 10,
+     "artist-credit": [
+      {
+       "artist": {
+        "type": "Group",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "country": "GB",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group"
+       },
+       "joinphrase": "",
+       "name": "Queen"
+      }
+     ],
+     "id": "b8c17bfa-92f0-364c-8180-565291672384",
+     "number": "B3",
+     "title": "Good Company",
+     "recording": {
+      "title": "Good Company",
+      "length": 203440,
+      "first-release-date": "1975-11-21",
+      "video": false,
+      "id": "d002ad96-7eac-4ca5-9b45-d89b8c7f15ee",
+      "disambiguation": "",
+      "artist-credit": [
+       {
+        "artist": {
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "country": "GB",
+         "sort-name": "Queen",
+         "name": "Queen",
+         "type": "Group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "disambiguation": "UK rock group"
+        },
+        "joinphrase": "",
+        "name": "Queen"
+       }
+      ]
+     },
+     "length": 203893
+    },
+    {
+     "number": "B4",
+     "position": 11,
+     "id": "b8c2cf90-83f9-3b5f-8ccd-31fb866fcf37",
+     "artist-credit": [
+      {
+       "artist": {
+        "type": "Group",
+        "sort-name": "Queen",
+        "country": "GB",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "name": "Queen",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "disambiguation": "UK rock group"
+       },
+       "joinphrase": "",
+       "name": "Queen"
+      }
+     ],
+     "length": 355106,
+     "title": "Bohemian Rhapsody",
+     "recording": {
+      "length": 355106,
+      "title": "Bohemian Rhapsody",
+      "id": "b1a9c0e9-d987-4042-ae91-78d6a3267d69",
+      "artist-credit": [
+       {
+        "artist": {
+         "name": "Queen",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "country": "GB",
+         "sort-name": "Queen",
+         "type": "Group",
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "disambiguation": "UK rock group"
+        },
+        "joinphrase": "",
+        "name": "Queen"
+       }
+      ],
+      "disambiguation": "",
+      "video": false,
+      "first-release-date": "1975-11-21"
+     }
+    },
+    {
+     "length": 75800,
+     "recording": {
+      "title": "God Save the Queen",
+      "length": 75000,
+      "first-release-date": "1975-11-21",
+      "video": false,
+      "disambiguation": "",
+      "id": "4112acb8-7ac0-4047-9c02-6e02226003e7",
+      "artist-credit": [
+       {
+        "artist": {
+         "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+         "disambiguation": "UK rock group",
+         "name": "Queen",
+         "country": "GB",
+         "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+         "sort-name": "Queen",
+         "type": "Group"
+        },
+        "name": "Queen",
+        "joinphrase": ""
+       }
+      ]
+     },
+     "title": "God Save the Queen",
+     "number": "B5",
+     "position": 12,
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "joinphrase": "",
+       "artist": {
+        "disambiguation": "UK rock group",
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "name": "Queen",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "country": "GB",
+        "sort-name": "Queen",
+        "type": "Group"
+       }
+      }
+     ],
+     "id": "3f133b18-5e4f-3c5e-91ab-d15b37e7f7dc"
+    }
+   ]
+  }
+ ],
+ "artist-credit": [
+  {
+   "joinphrase": "",
+   "name": "Queen",
+   "artist": {
+    "type": "Group",
+    "sort-name": "Queen",
+    "country": "GB",
+    "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+    "name": "Queen",
+    "disambiguation": "UK rock group",
+    "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+   }
+  }
+ ],
+ "id": "6defd963-fe91-4550-b18e-82c685603c2b",
+ "cover-art-archive": {
+  "front": true,
+  "artwork": true,
+  "count": 8,
+  "back": true,
+  "darkened": false
+ },
+ "label-info": [
+  {
+   "label": {
+    "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+    "sort-name": "EMI",
+    "name": "EMI",
+    "type": "Original Production",
+    "label-code": 542,
+    "id": "c029628b-6633-439e-bcee-ed02e8a338f7",
+    "disambiguation": "EMI Records, or EMI Music only if there is no other imprint"
+   },
+   "catalog-number": "0C 066 ∘ 97176"
+  },
+  {
+   "catalog-number": "EMTC 103",
+   "label": {
+    "disambiguation": "EMI Records, or EMI Music only if there is no other imprint",
+    "id": "c029628b-6633-439e-bcee-ed02e8a338f7",
+    "label-code": 542,
+    "type": "Original Production",
+    "sort-name": "EMI",
+    "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+    "name": "EMI"
+   }
+  }
+ ],
+ "quality": "normal",
+ "status": "Official",
+ "release-events": [
+  {
+   "date": "1975-11-21",
+   "area": {
+    "sort-name": "United Kingdom",
+    "type-id": null,
+    "name": "United Kingdom",
+    "type": null,
+    "iso-3166-1-codes": [
+     "GB"
+    ],
+    "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+    "disambiguation": ""
+   }
+  }
+ ],
+ "date": "1975-11-21",
+ "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
+ "release-group": {
+  "title": "A Night at the Opera",
+  "secondary-types": [],
+  "secondary-type-ids": [],
+  "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+  "first-release-date": "1975-11-21",
+  "artist-credit": [
+   {
+    "name": "Queen",
+    "joinphrase": "",
+    "artist": {
+     "type": "Group",
+     "name": "Queen",
+     "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+     "country": "GB",
+     "sort-name": "Queen",
+     "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+     "disambiguation": "UK rock group"
+    }
+   }
+  ],
+  "id": "6b47c9a0-b9e1-3df9-a5e8-50a6ce0dbdbd",
+  "disambiguation": "",
+  "primary-type": "Album"
+ },
+ "title": "A Night at the Opera",
+ "disambiguation": "",
+ "asin": null,
+ "barcode": "",
+ "text-representation": {
+  "language": "eng",
+  "script": "Latn"
+ },
+ "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+ "packaging": "Gatefold Cover",
+ "country": "GB"
+}

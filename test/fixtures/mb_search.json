@@ -1,0 +1,475 @@
+{
+ "created": "2026-09-24T13:15:31.668Z",
+ "count": 225,
+ "offset": 0,
+ "recordings": [
+  {
+   "id": "f8842b89-faa8-495d-900c-9359fab2d372",
+   "score": 100,
+   "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+   "title": "Bohemian Rhapsody",
+   "length": 323000,
+   "disambiguation": "live, 1982-10-19: Kyuden Auditorium, Fukuoka, Japan",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Queen",
+     "artist": {
+      "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+      "name": "Queen",
+      "sort-name": "Queen",
+      "disambiguation": "UK rock group",
+      "aliases": [
+       {
+        "sort-name": "皇后乐队",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "皇后乐队",
+        "locale": "zh_Hans_CN",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "クイーン",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "クイーン",
+        "locale": "ja",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "1991",
+   "releases": [
+    {
+     "id": "ec3c9c76-3c4b-4711-9fdc-f0358fcb2c07",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+     "count": 2,
+     "title": "Live USA",
+     "status": "Bootleg",
+     "disambiguation": "1982‐10‐19: Kyuden Auditorium, Fukuoka, Japan",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "9f16a102-2952-3066-a743-ae4f62b7bf0a",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "1982-10-19: Live USA",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "1991",
+     "country": "DE",
+     "release-events": [
+      {
+       "date": "1991",
+       "area": {
+        "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+        "name": "Germany",
+        "sort-name": "Germany",
+        "iso-3166-1-codes": [
+         "DE"
+        ]
+       }
+      }
+     ],
+     "track-count": 21,
+     "media": [
+      {
+       "id": "9cb462d4-7007-30be-aff1-5e4f57c70e6e",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "e84dd73e-a51b-32e8-919b-19c93f30b42f",
+         "number": "7",
+         "title": "Bohemian Rhapsody",
+         "length": 323000
+        }
+       ],
+       "track-count": 11,
+       "track-offset": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "545590aa-f6fe-4180-a447-e64d27ed55e5",
+   "score": 100,
+   "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+   "title": "Bohemian Rhapsody",
+   "length": 320000,
+   "disambiguation": "live, 1985: Japan",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Queen",
+     "artist": {
+      "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+      "name": "Queen",
+      "sort-name": "Queen",
+      "disambiguation": "UK rock group",
+      "aliases": [
+       {
+        "sort-name": "皇后乐队",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "皇后乐队",
+        "locale": "zh_Hans_CN",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "クイーン",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "クイーン",
+        "locale": "ja",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "1993-01-01",
+   "releases": [
+    {
+     "id": "90199511-bad1-40a5-a62f-77600afe3f03",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+     "count": 1,
+     "title": "Made in Japan: Live in Japan 1985",
+     "status": "Bootleg",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "e1704aad-e709-37af-b999-fd05fcfd2e5c",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Made in Japan: Live in Japan 1985",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "track-count": 19,
+     "media": [
+      {
+       "id": "15e3d835-8cd9-3eb1-9dcf-b0d088a7be4c",
+       "position": 1,
+       "track": [
+        {
+         "id": "4a2c0182-e4c5-3c1f-a5fe-dd900713cc49",
+         "number": "9",
+         "title": "Bohemian Rhapsody",
+         "length": 320000
+        }
+       ],
+       "track-count": 19,
+       "track-offset": 8
+      }
+     ]
+    },
+    {
+     "id": "7b7c380c-0f4c-4866-a7ab-7257e8596909",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+     "count": 1,
+     "title": "Who Wants to Live Forever",
+     "status": "Bootleg",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "63df4b28-fac9-3b13-9fd1-08aa5c7cb7a4",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Who Wants to Live Forever",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "1993-01-01",
+     "country": "DE",
+     "release-events": [
+      {
+       "date": "1993-01-01",
+       "area": {
+        "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+        "name": "Germany",
+        "sort-name": "Germany",
+        "iso-3166-1-codes": [
+         "DE"
+        ]
+       }
+      }
+     ],
+     "track-count": 19,
+     "media": [
+      {
+       "id": "935c6585-1758-3816-96ec-7534b9ced51d",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "bab4713c-5e37-4569-a60e-87863f924b2c",
+         "number": "9",
+         "title": "Bohemian Rhapsody",
+         "length": 320000
+        }
+       ],
+       "track-count": 19,
+       "track-offset": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "b9e3eb37-6335-4adf-8550-bdf7f84385e8",
+   "score": 100,
+   "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+   "title": "Bohemian Rhapsody",
+   "length": 343000,
+   "disambiguation": "live",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Queen",
+     "artist": {
+      "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+      "name": "Queen",
+      "sort-name": "Queen",
+      "disambiguation": "UK rock group",
+      "aliases": [
+       {
+        "sort-name": "皇后乐队",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "皇后乐队",
+        "locale": "zh_Hans_CN",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "クイーン",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "クイーン",
+        "locale": "ja",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "1992",
+   "releases": [
+    {
+     "id": "4fc7f656-61ef-4548-b738-7de9d204ee0b",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+     "count": 1,
+     "title": "We Will Rock You",
+     "status": "Bootleg",
+     "disambiguation": "reissue, white background",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "8b174a3d-4d52-3961-b593-b154903f703f",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "We Will Rock You",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "1992",
+     "country": "DE",
+     "release-events": [
+      {
+       "date": "1992",
+       "area": {
+        "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+        "name": "Germany",
+        "sort-name": "Germany",
+        "iso-3166-1-codes": [
+         "DE"
+        ]
+       }
+      },
+      {
+       "date": "1992",
+       "area": {
+        "id": "c6500277-9a3d-349b-bf30-41afdbf42add",
+        "name": "Italy",
+        "sort-name": "Italy",
+        "iso-3166-1-codes": [
+         "IT"
+        ]
+       }
+      }
+     ],
+     "track-count": 14,
+     "media": [
+      {
+       "id": "ad5f4a7a-832b-3587-bfda-51a0c8d4ad4c",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "bece1af5-dc47-4b07-a4d8-95b14353c75f",
+         "number": "8",
+         "title": "Bohemian Rhapsody",
+         "length": 343000
+        }
+       ],
+       "track-count": 14,
+       "track-offset": 7
+      }
+     ]
+    },
+    {
+     "id": "f2e165fb-2b87-47da-a433-07e3a6c46da6",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edbf1ee2-3861-3d95-b971-8f243cbc7e54",
+     "count": 1,
+     "title": "We Will Rock You",
+     "status": "Bootleg",
+     "artist-credit": [
+      {
+       "name": "Queen",
+       "artist": {
+        "id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+        "name": "Queen",
+        "sort-name": "Queen",
+        "disambiguation": "UK rock group"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "8b174a3d-4d52-3961-b593-b154903f703f",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "We Will Rock You",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "1992",
+     "country": "IT",
+     "release-events": [
+      {
+       "date": "1992",
+       "area": {
+        "id": "c6500277-9a3d-349b-bf30-41afdbf42add",
+        "name": "Italy",
+        "sort-name": "Italy",
+        "iso-3166-1-codes": [
+         "IT"
+        ]
+       }
+      },
+      {
+       "date": "1992",
+       "area": {
+        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+        "name": "United Kingdom",
+        "sort-name": "United Kingdom",
+        "iso-3166-1-codes": [
+         "GB"
+        ]
+       }
+      }
+     ],
+     "track-count": 14,
+     "media": [
+      {
+       "id": "66570700-21ef-3f2a-813e-fd7ee712011a",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "c8634785-faf1-3c23-83c0-e047189d178f",
+         "number": "8",
+         "title": "Bohemian Rhapsody",
+         "length": 344000
+        }
+       ],
+       "track-count": 14,
+       "track-offset": 7
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
