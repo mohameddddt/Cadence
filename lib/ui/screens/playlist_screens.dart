@@ -6,68 +6,194 @@ import '../../core/library/smart_rules.dart';
 import '../../core/models/library_models.dart';
 import '../../core/models/track.dart';
 import '../widgets/common.dart';
+import '../widgets/cover_tint.dart';
+import '../widgets/kit.dart';
 import '../widgets/track_widgets.dart';
+import 'playlist_editor.dart';
 
 class PlaylistsTab extends StatelessWidget {
-  const PlaylistsTab({super.key});
+  const PlaylistsTab({super.key, this.grid = false, this.filter = ''});
+
+  final bool grid;
+  final String filter;
 
   @override
   Widget build(BuildContext context) {
     final s = context.read<AppServices>();
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _create(context),
-        icon: const Icon(Icons.add),
-        label: const Text('New playlist'),
-      ),
-      body: StreamBuilder<List<Playlist>>(
-        stream: s.db.watch(s.repo.playlists),
-        builder: (context, snap) {
-          final lists = snap.data;
-          if (lists == null) return const Center(child: CircularProgressIndicator());
-          return ListView(padding: const EdgeInsets.only(bottom: 160), children: [
-            ListTile(leading: const CircleAvatar(child: Icon(Icons.favorite)), title: const Text('Favourites'), onTap: () => _open(context, 'Favourites', s.repo.lovedTracks)),
-            ListTile(leading: const CircleAvatar(child: Icon(Icons.history)), title: const Text('Recently played'), onTap: () => _open(context, 'Recently played', () => s.repo.recentlyPlayed(limit: 100))),
-            ListTile(leading: const CircleAvatar(child: Icon(Icons.trending_up)), title: const Text('Most played'), onTap: () => _open(context, 'Most played', () => s.repo.mostPlayed(limit: 100))),
-            const Divider(),
-            if (lists.isEmpty) const Padding(padding: EdgeInsets.all(32), child: Center(child: Text('No playlists yet'))),
-            for (final p in lists)
-              ListTile(
-                leading: CircleAvatar(child: Icon(p.isSmart ? Icons.auto_awesome : Icons.queue_music)),
-                title: Text(p.name),
-                subtitle: Text(p.isSmart ? 'Smart playlist' : '${p.trackCount} songs'),
-                onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => PlaylistScreen(playlistId: p.id))),
-              ),
-          ]);
-        },
-      ),
+    final scheme = Theme.of(context).colorScheme;
+    return StreamBuilder<({List<Playlist> lists, int loved})>(
+      stream: s.db.watch(() async => (lists: await s.repo.playlists(), loved: (await s.repo.lovedTracks()).length)),
+      builder: (context, snap) {
+        final d = snap.data;
+        if (d == null) return const Loader();
+        final f = filter.toLowerCase();
+        final lists = f.isEmpty ? d.lists : d.lists.where((p) => p.name.toLowerCase().contains(f)).toList();
+        final pinned = <_Pinned>[
+          _Pinned('Liked songs', 'Playlist · ${d.loved} song${d.loved == 1 ? '' : 's'}', Icons.favorite_rounded, [scheme.primary, Color.lerp(scheme.primary, Colors.white, 0.55)!],
+              () => _open(context, 'Liked songs', s.repo.lovedTracks)),
+          _Pinned('Recently played', 'Your last 100 songs', Icons.history_rounded, [const Color(0xFF3B5BDB), const Color(0xFF91A7FF)],
+              () => _open(context, 'Recently played', () => s.repo.recentlyPlayed(limit: 100))),
+          _Pinned('On repeat', 'Your most played', Icons.trending_up_rounded, [const Color(0xFFE8590C), const Color(0xFFFFC078)],
+              () => _open(context, 'On repeat', () => s.repo.mostPlayed(limit: 100))),
+        ].where((p) => f.isEmpty || p.title.toLowerCase().contains(f)).toList();
+
+        if (grid) {
+          return GridView.builder(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, bottomClearance(context)),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 180, mainAxisSpacing: 16, crossAxisSpacing: 14, childAspectRatio: 0.76),
+            itemCount: pinned.length + lists.length,
+            itemBuilder: (context, i) => i < pinned.length ? _PinnedCard(pinned[i]) : _PlaylistCard(playlist: lists[i - pinned.length]),
+          );
+        }
+        return ListView(padding: EdgeInsets.only(top: 4, bottom: bottomClearance(context)), children: [
+          for (final p in pinned)
+            _Row(
+              art: _GradientArt(p.icon, p.colors),
+              title: p.title,
+              subtitle: p.subtitle,
+              pinned: true,
+              onTap: p.onTap,
+            ),
+          for (final p in lists)
+            _Row(
+              art: PlaylistCover(playlist: p, size: 64, radius: 4),
+              title: p.name,
+              subtitle: p.isSmart ? 'Smart playlist' : 'Playlist · ${p.trackCount} song${p.trackCount == 1 ? '' : 's'}',
+              onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => PlaylistScreen(playlistId: p.id))),
+              onLongPress: p.isSmart ? null : () => showPlaylistEditor(context, existing: p),
+            ),
+          _Row(
+            art: Container(width: 64, height: 64, decoration: BoxDecoration(color: scheme.surfaceContainerHigh, shape: BoxShape.circle), child: Icon(Icons.add_rounded, size: 32, color: scheme.onSurfaceVariant)),
+            title: 'Create playlist',
+            subtitle: 'Name it and add a picture',
+            onTap: () => _openNew(context),
+          ),
+          _Row(
+            art: Container(width: 64, height: 64, decoration: BoxDecoration(color: scheme.surfaceContainerHigh, shape: BoxShape.circle), child: Icon(Icons.auto_awesome_rounded, size: 26, color: scheme.onSurfaceVariant)),
+            title: 'Smart playlist',
+            subtitle: 'Fills itself from rules',
+            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const SmartPlaylistEditor())),
+          ),
+        ]);
+      },
     );
   }
 
-  void _open(BuildContext context, String title, Future<List<Track>> Function() loader) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => _SimpleTracks(title: title, loader: loader)));
+  Future<void> _openNew(BuildContext context) async {
+    final id = await showPlaylistEditor(context);
+    if (id != null && context.mounted) Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => PlaylistScreen(playlistId: id)));
   }
 
-  Future<void> _create(BuildContext context) async {
-    final choice = await showModalBottomSheet<String>(
-      context: context,
-      showDragHandle: true,
-      builder: (c) => SafeArea(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          ListTile(leading: const Icon(Icons.queue_music), title: const Text('Playlist'), subtitle: const Text('Pick songs yourself'), onTap: () => Navigator.pop(c, 'manual')),
-          ListTile(leading: const Icon(Icons.auto_awesome), title: const Text('Smart playlist'), subtitle: const Text('Fills itself from rules (genre, plays, added...)'), onTap: () => Navigator.pop(c, 'smart')),
+  static void _open(BuildContext context, String title, Future<List<Track>> Function() loader) {
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => _SimpleTracks(title: title, loader: loader)));
+  }
+}
+
+class _Pinned {
+  const _Pinned(this.title, this.subtitle, this.icon, this.colors, this.onTap);
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final List<Color> colors;
+  final VoidCallback onTap;
+}
+
+class _GradientArt extends StatelessWidget {
+  const _GradientArt(this.icon, this.colors, {this.size = 64});
+  final IconData icon;
+  final List<Color> colors;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: colors)),
+        child: Icon(icon, color: Colors.white, size: size * 0.4),
+      );
+}
+
+/// A library row: 64px art, title, and a subtitle with a pin for the built-in lists.
+class _Row extends StatelessWidget {
+  const _Row({required this.art, required this.title, required this.subtitle, required this.onTap, this.onLongPress, this.pinned = false});
+
+  final Widget art;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+  final VoidCallback? onLongPress;
+  final bool pinned;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    return InkWell(
+      onTap: onTap,
+      onLongPress: onLongPress,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+        child: Row(children: [
+          art,
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.titleMedium),
+              const SizedBox(height: 2),
+              Row(children: [
+                if (pinned) ...[Transform.rotate(angle: 0.7, child: Icon(Icons.push_pin_rounded, size: 13, color: t.colorScheme.primary)), const SizedBox(width: 5)],
+                Flexible(child: Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant))),
+              ]),
+            ]),
+          ),
         ]),
       ),
     );
-    if (choice == null || !context.mounted) return;
-    final s = context.read<AppServices>();
-    if (choice == 'manual') {
-      final name = await promptText(context, title: 'New playlist', hint: 'Name');
-      if (name != null) await s.repo.createPlaylist(name);
-    } else {
-      await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const SmartPlaylistEditor()));
-    }
+  }
+}
+
+class _PinnedCard extends StatelessWidget {
+  const _PinnedCard(this.p);
+  final _Pinned p;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    return InkWell(
+      borderRadius: BorderRadius.circular(6),
+      onTap: p.onTap,
+      child: LayoutBuilder(builder: (context, c) {
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          _GradientArt(p.icon, p.colors, size: c.maxWidth),
+          const SizedBox(height: 8),
+          Text(p.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
+          Text(p.subtitle, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
+        ]);
+      }),
+    );
+  }
+}
+
+class _PlaylistCard extends StatelessWidget {
+  const _PlaylistCard({required this.playlist});
+  final Playlist playlist;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    final p = playlist;
+    return InkWell(
+      borderRadius: BorderRadius.circular(6),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => PlaylistScreen(playlistId: p.id))),
+      onLongPress: p.isSmart ? null : () => showPlaylistEditor(context, existing: p),
+      child: LayoutBuilder(builder: (context, c) {
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          PlaylistCover(playlist: p, size: c.maxWidth, radius: 4),
+          const SizedBox(height: 8),
+          Text(p.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
+          Text(p.isSmart ? 'Smart playlist' : '${p.trackCount} song${p.trackCount == 1 ? '' : 's'}', maxLines: 1, style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
+        ]);
+      }),
+    );
   }
 }
 
@@ -85,9 +211,9 @@ class _SimpleTracks extends StatelessWidget {
         stream: s.db.watch(loader),
         builder: (context, snap) {
           final t = snap.data;
-          if (t == null) return const Center(child: CircularProgressIndicator());
-          if (t.isEmpty) return const EmptyState(icon: Icons.music_off, title: 'Nothing here yet');
-          return TrackListView(tracks: t, padding: const EdgeInsets.only(bottom: 120));
+          if (t == null) return const Loader();
+          if (t.isEmpty) return const EmptyState(icon: Icons.music_off_rounded, title: 'Nothing here yet');
+          return TrackListView(tracks: t, padding: EdgeInsets.only(bottom: bottomClearance(context)));
         },
       ),
     );
@@ -113,63 +239,114 @@ class PlaylistScreen extends StatelessWidget {
       }),
       builder: (context, snap) {
         final d = snap.data;
-        if (d == null) return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        if (d == null) return const Scaffold(body: Loader());
         final p = d.p;
-        if (p == null) return Scaffold(appBar: AppBar(), body: const EmptyState(icon: Icons.queue_music, title: 'Playlist not found'));
+        if (p == null) return Scaffold(appBar: AppBar(), body: const EmptyState(icon: Icons.queue_music_rounded, title: 'Playlist not found'));
         final tracks = [for (final e in d.entries) e.track];
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(p.name),
-            actions: [
-              if (p.isSmart) IconButton(tooltip: 'Edit rules', icon: const Icon(Icons.tune), onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => SmartPlaylistEditor(existing: p)))),
-              PopupMenuButton<String>(
-                onSelected: (v) async {
-                  if (v == 'rename') {
-                    final n = await promptText(context, title: 'Rename', initial: p.name);
-                    if (n != null) await s.repo.renamePlaylist(p.id, n);
-                  } else if (v == 'delete') {
-                    await s.repo.deletePlaylist(p.id);
-                    if (context.mounted) Navigator.pop(context);
-                  } else if (v == 'queue') {
-                    await s.player.enqueue(tracks);
-                  }
-                },
-                itemBuilder: (_) => const [PopupMenuItem(value: 'rename', child: Text('Rename')), PopupMenuItem(value: 'queue', child: Text('Add to queue')), PopupMenuItem(value: 'delete', child: Text('Delete'))],
-              ),
-            ],
-          ),
-          body: tracks.isEmpty
-              ? EmptyState(icon: Icons.queue_music, title: 'Empty playlist', message: p.isSmart ? 'No songs match the rules yet.' : 'Add songs from the ⋮ menu of any track.')
-              : Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(children: [
-                      FilledButton.icon(onPressed: () => s.player.playTracks(tracks), icon: const Icon(Icons.play_arrow), label: const Text('Play')),
-                      const SizedBox(width: 8),
-                      OutlinedButton.icon(onPressed: () => s.player.playTracks(tracks, shuffle: true), icon: const Icon(Icons.shuffle), label: const Text('Shuffle')),
-                    ]),
+        final t = Theme.of(context);
+        final scheme = t.colorScheme;
+        final total = tracks.fold<int>(0, (a, b) => a + b.durationMs);
+        final tintPath = p.coverPath ?? (tracks.isEmpty ? null : s.coverCache.albumCover(tracks.first.albumId));
+
+        Future<void> menu(String v) async {
+          if (v == 'edit') {
+            await showPlaylistEditor(context, existing: p);
+          } else if (v == 'rename') {
+            final n = await promptText(context, title: 'Rename', initial: p.name);
+            if (n != null) await s.repo.renamePlaylist(p.id, n);
+          } else if (v == 'rules') {
+            await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => SmartPlaylistEditor(existing: p)));
+          } else if (v == 'delete') {
+            await s.repo.deletePlaylist(p.id);
+            await deletePlaylistCoverFile(p.coverPath);
+            if (context.mounted) Navigator.pop(context);
+          } else if (v == 'queue') {
+            await s.player.enqueue(tracks);
+            if (context.mounted) showSnack(context, 'Added to queue');
+          }
+        }
+
+        final header = CoverTintBuilder(
+          path: tintPath,
+          builder: (context, tint) {
+            final top = tint == null ? scheme.surfaceContainerHighest : CoverTint.shade(tint, t.brightness == Brightness.dark ? 0.32 : 0.78);
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 400),
+              decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [top, scheme.surface])),
+              padding: EdgeInsets.fromLTRB(16, MediaQuery.paddingOf(context).top + kToolbarHeight, 16, 4),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Center(
+                  child: GestureDetector(
+                    onTap: p.isSmart ? null : () => showPlaylistEditor(context, existing: p),
+                    child: PlaylistCover(playlist: p, size: 224, radius: 4),
                   ),
-                  Expanded(
-                    child: p.isSmart
-                        ? TrackListView(tracks: tracks, padding: const EdgeInsets.only(bottom: 120))
-                        : ReorderableListView.builder(
-                            padding: const EdgeInsets.only(bottom: 120),
-                            itemCount: d.entries.length,
-                            onReorderItem: (o, n) => s.repo.reorderPlaylist(p.id, o, n),
-                            itemBuilder: (context, i) {
-                              final e = d.entries[i];
-                              return TrackTile(
-                                key: ValueKey('e${e.entryId}'),
-                                track: e.track,
-                                playlistId: p.id,
-                                playlistEntryId: e.entryId,
-                                onTap: () => s.player.playTracks(tracks, index: i),
-                                trailing: ReorderableDragStartListener(index: i, child: const Icon(Icons.drag_handle)),
-                              );
-                            },
-                          ),
+                ),
+                const SizedBox(height: 20),
+                Text(p.name, maxLines: 2, overflow: TextOverflow.ellipsis, style: t.textTheme.headlineLarge),
+                const SizedBox(height: 6),
+                Text(
+                  '${p.isSmart ? 'Smart playlist' : 'Playlist'} · ${tracks.length} song${tracks.length == 1 ? '' : 's'}${total > 0 ? ' · ${formatMs(total)}' : ''}',
+                  style: t.textTheme.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
+                ),
+                const SizedBox(height: 6),
+                Row(children: [
+                  if (!p.isSmart) IconButton(tooltip: 'Edit name & picture', icon: Icon(Icons.edit_outlined, color: scheme.onSurfaceVariant), onPressed: () => menu('edit')),
+                  if (p.isSmart) IconButton(tooltip: 'Edit rules', icon: Icon(Icons.tune_rounded, color: scheme.onSurfaceVariant), onPressed: () => menu('rules')),
+                  IconButton(tooltip: 'Add to queue', icon: Icon(Icons.queue_music_rounded, color: scheme.onSurfaceVariant), onPressed: tracks.isEmpty ? null : () => menu('queue')),
+                  PopupMenuButton<String>(
+                    icon: Icon(Icons.more_horiz_rounded, color: scheme.onSurfaceVariant),
+                    onSelected: menu,
+                    itemBuilder: (_) => [
+                      if (p.isSmart) const PopupMenuItem(value: 'rename', child: Text('Rename')),
+                      const PopupMenuItem(value: 'delete', child: Text('Delete playlist')),
+                    ],
                   ),
+                  const Spacer(),
+                  if (tracks.isNotEmpty) ...[
+                    IconButton(tooltip: 'Shuffle', iconSize: 28, icon: Icon(Icons.shuffle_rounded, color: scheme.primary), onPressed: () => s.player.playTracks(tracks, shuffle: true)),
+                    const SizedBox(width: 6),
+                    RoundIconButton(tooltip: 'Play', icon: Icons.play_arrow_rounded, size: 56, iconSize: 32, color: scheme.primary, iconColor: scheme.onPrimary, onPressed: () => s.player.playTracks(tracks)),
+                  ],
                 ]),
+              ]),
+            );
+          },
+        );
+
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(backgroundColor: Colors.transparent),
+          body: CustomScrollView(slivers: [
+            SliverToBoxAdapter(child: header),
+            if (tracks.isEmpty)
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: EmptyState(icon: Icons.queue_music_rounded, title: 'Empty playlist', message: p.isSmart ? 'No songs match the rules yet.' : 'Add songs from the ⋮ menu of any track.'),
+              )
+            else if (p.isSmart)
+              SliverList.builder(
+                itemCount: tracks.length,
+                itemBuilder: (context, i) => TrackTile(track: tracks[i], onTap: () => s.player.playTracks(tracks, index: i)),
+              )
+            else
+              SliverReorderableList(
+                itemCount: d.entries.length,
+                onReorderItem: (o, n) => s.repo.reorderPlaylist(p.id, o, n),
+                proxyDecorator: (child, _, _) => Material(color: scheme.surfaceContainerHigh, elevation: 6, child: child),
+                itemBuilder: (context, i) {
+                  final e = d.entries[i];
+                  return TrackTile(
+                    key: ValueKey('e${e.entryId}'),
+                    track: e.track,
+                    playlistId: p.id,
+                    playlistEntryId: e.entryId,
+                    onTap: () => s.player.playTracks(tracks, index: i),
+                    trailing: ReorderableDragStartListener(index: i, child: Icon(Icons.drag_handle_rounded, color: scheme.onSurfaceVariant)),
+                  );
+                },
+              ),
+            SliverToBoxAdapter(child: SizedBox(height: bottomClearance(context))),
+          ]),
         );
       },
     );
@@ -187,7 +364,7 @@ class SmartPlaylistEditor extends StatefulWidget {
 
 class _SmartPlaylistEditorState extends State<SmartPlaylistEditor> {
   late final TextEditingController _name = TextEditingController(text: widget.existing?.name ?? '');
-  late SmartRules _rules = SmartRules.parse(widget.existing?.smartRules);
+  late final SmartRules _rules = SmartRules.parse(widget.existing?.smartRules);
   late List<SmartCondition> _conditions = List.of(_rules.conditions);
   bool _all = true;
   TrackSort _sort = TrackSort.title;

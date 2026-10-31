@@ -5,11 +5,14 @@ import '../../app/app_services.dart';
 import '../../core/library/smart_rules.dart';
 import '../../core/models/library_models.dart';
 import '../../core/models/track.dart';
+import '../widgets/brand_logo.dart';
 import '../widgets/common.dart';
 import '../widgets/cover_art.dart';
+import '../widgets/kit.dart';
 import '../widgets/track_widgets.dart';
 import 'album_screen.dart';
 import 'artist_screen.dart';
+import 'playlist_editor.dart';
 import 'playlist_screens.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -32,52 +35,109 @@ class _LibraryScreenState extends State<LibraryScreen> with SingleTickerProvider
     super.dispose();
   }
 
+  static const _tabNames = ['Playlists', 'Songs', 'Albums', 'Artists', 'Genres', 'Folders'];
+
   @override
   Widget build(BuildContext context) {
     final s = context.watch<AppServices>().settings;
+    final t = Theme.of(context);
+    final scheme = t.colorScheme;
     return Scaffold(
-      appBar: AppBar(
-        title: _showFilter
-            ? TextField(autofocus: true, decoration: const InputDecoration(hintText: 'Filter…', border: InputBorder.none), onChanged: (v) => setState(() => _filter = v.trim()))
-            : const Text('Library'),
-        actions: [
-          IconButton(tooltip: 'Filter', icon: Icon(_showFilter ? Icons.close : Icons.filter_list), onPressed: () => setState(() {
-                _showFilter = !_showFilter;
-                if (!_showFilter) _filter = '';
-              })),
-          IconButton(tooltip: s.libraryGrid ? 'List view' : 'Grid view', icon: Icon(s.libraryGrid ? Icons.view_list : Icons.grid_view), onPressed: () => s.setLibraryGrid(!s.libraryGrid)),
-          PopupMenuButton<TrackSort>(
-            tooltip: 'Sort',
-            icon: const Icon(Icons.sort),
-            onSelected: (v) => setState(() {
-              if (_sort == v) {
-                _desc = !_desc;
-              } else {
-                _sort = v;
-                _desc = v == TrackSort.dateAdded || v == TrackSort.playCount || v == TrackSort.lastPlayed;
-              }
-            }),
-            itemBuilder: (_) => [
-              for (final o in const [TrackSort.title, TrackSort.artist, TrackSort.album, TrackSort.dateAdded, TrackSort.playCount, TrackSort.duration, TrackSort.year])
-                CheckedPopupMenuItem(value: o, checked: _sort == o, child: Text(_sortLabel(o))),
-            ],
+      body: SafeArea(
+        bottom: false,
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 4, 8),
+            child: Row(children: [
+              Container(
+                width: 34,
+                height: 34,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(color: scheme.surfaceContainerHighest, shape: BoxShape.circle),
+                child: const BrandMark(size: 24),
+              ),
+              const SizedBox(width: 12),
+              Expanded(child: Text('Your Library', style: t.textTheme.displaySmall, maxLines: 1, overflow: TextOverflow.ellipsis)),
+              IconButton(
+                tooltip: _showFilter ? 'Close filter' : 'Filter',
+                icon: Icon(_showFilter ? Icons.close_rounded : Icons.search_rounded, size: 26),
+                onPressed: () => setState(() {
+                  _showFilter = !_showFilter;
+                  if (!_showFilter) _filter = '';
+                }),
+              ),
+              IconButton(tooltip: 'New playlist', icon: const Icon(Icons.add_rounded, size: 30), onPressed: () => showPlaylistEditor(context)),
+            ]),
           ),
-        ],
-        bottom: TabBar(
-          controller: _tabs,
-          isScrollable: true,
-          tabAlignment: TabAlignment.start,
-          tabs: const [Tab(text: 'Songs'), Tab(text: 'Albums'), Tab(text: 'Artists'), Tab(text: 'Genres'), Tab(text: 'Folders'), Tab(text: 'Playlists')],
-        ),
+          if (_showFilter)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: TextField(
+                autofocus: true,
+                decoration: const InputDecoration(hintText: 'Filter your library', prefixIcon: Icon(Icons.search_rounded), isDense: true),
+                onChanged: (v) => setState(() => _filter = v.trim()),
+              ),
+            ),
+          // Tabs as chips.
+          SizedBox(
+            height: 40,
+            child: AnimatedBuilder(
+              animation: _tabs,
+              builder: (context, _) => ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemCount: _tabNames.length,
+                separatorBuilder: (_, _) => const SizedBox(width: 8),
+                itemBuilder: (context, i) => Center(child: PillChip(label: _tabNames[i], selected: _tabs.index == i, onTap: () => _tabs.animateTo(i))),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 4, 4, 0),
+            child: Row(children: [
+              PopupMenuButton<TrackSort>(
+                tooltip: 'Sort songs',
+                onSelected: (v) => setState(() {
+                  if (_sort == v) {
+                    _desc = !_desc;
+                  } else {
+                    _sort = v;
+                    _desc = v == TrackSort.dateAdded || v == TrackSort.playCount || v == TrackSort.lastPlayed;
+                  }
+                }),
+                itemBuilder: (_) => [
+                  for (final o in const [TrackSort.title, TrackSort.artist, TrackSort.album, TrackSort.dateAdded, TrackSort.playCount, TrackSort.duration, TrackSort.year])
+                    CheckedPopupMenuItem(value: o, checked: _sort == o, child: Text(_sortLabel(o))),
+                ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Icon(_desc ? Icons.south_rounded : Icons.north_rounded, size: 16),
+                    const SizedBox(width: 6),
+                    Text(_sortLabel(_sort), style: t.textTheme.labelLarge),
+                  ]),
+                ),
+              ),
+              const Spacer(),
+              IconButton(
+                tooltip: s.libraryGrid ? 'List view' : 'Grid view',
+                icon: Icon(s.libraryGrid ? Icons.view_list_rounded : Icons.grid_view_rounded, size: 20),
+                onPressed: () => s.setLibraryGrid(!s.libraryGrid),
+              ),
+            ]),
+          ),
+          Expanded(
+            child: TabBarView(controller: _tabs, children: [
+              PlaylistsTab(grid: s.libraryGrid, filter: _filter),
+              _SongsTab(sort: _sort, desc: _desc, filter: _filter),
+              _AlbumsTab(filter: _filter, grid: s.libraryGrid),
+              _ArtistsTab(filter: _filter),
+              _GenresTab(filter: _filter),
+              _FoldersTab(filter: _filter),
+            ]),
+          ),
+        ]),
       ),
-      body: TabBarView(controller: _tabs, children: [
-        _SongsTab(sort: _sort, desc: _desc, filter: _filter),
-        _AlbumsTab(filter: _filter, grid: s.libraryGrid),
-        _ArtistsTab(filter: _filter),
-        _GenresTab(filter: _filter),
-        _FoldersTab(filter: _filter),
-        const PlaylistsTab(),
-      ]),
     );
   }
 
@@ -118,7 +178,7 @@ class _SongsTab extends StatelessWidget {
               TextButton.icon(onPressed: () => s.player.playTracks(tracks, shuffle: true), icon: const Icon(Icons.shuffle, size: 18), label: const Text('Shuffle all')),
             ]),
           ),
-          Expanded(child: TrackListView(tracks: tracks, padding: const EdgeInsets.only(bottom: 120))),
+          Expanded(child: TrackListView(tracks: tracks, padding: EdgeInsets.only(bottom: bottomClearance(context)))),
         ]);
       },
     );
@@ -149,7 +209,7 @@ class _AlbumsTab extends StatelessWidget {
         if (albums.isEmpty) return _empty(context, s, filter.isNotEmpty);
         if (!grid) {
           return ListView.builder(
-            padding: const EdgeInsets.only(bottom: 120),
+            padding: EdgeInsets.only(bottom: bottomClearance(context)),
             itemCount: albums.length,
             itemBuilder: (context, i) => ListTile(
               leading: CoverArt(albumId: albums[i].id, seed: albums[i].title, size: 52),
@@ -187,7 +247,7 @@ class _ArtistsTab extends StatelessWidget {
         if (artists == null) return const Center(child: CircularProgressIndicator());
         if (artists.isEmpty) return _empty(context, s, filter.isNotEmpty);
         return ListView.builder(
-          padding: const EdgeInsets.only(bottom: 120),
+          padding: EdgeInsets.only(bottom: bottomClearance(context)),
           itemCount: artists.length,
           itemBuilder: (context, i) => ListTile(
             leading: CoverArt(artistId: artists[i].id, seed: artists[i].name, size: 52, circle: true),
@@ -217,7 +277,7 @@ class _GenresTab extends StatelessWidget {
         final genres = all.where((g) => filter.isEmpty || g.name.toLowerCase().contains(filter.toLowerCase())).toList();
         if (genres.isEmpty) return _empty(context, s, filter.isNotEmpty);
         return ListView.builder(
-          padding: const EdgeInsets.only(bottom: 120),
+          padding: EdgeInsets.only(bottom: bottomClearance(context)),
           itemCount: genres.length,
           itemBuilder: (context, i) => ListTile(
             leading: CircleAvatar(child: Text(initialsOf(genres[i].name))),
@@ -246,7 +306,7 @@ class _FoldersTab extends StatelessWidget {
         final folders = all.where((f) => filter.isEmpty || f.path.toLowerCase().contains(filter.toLowerCase())).toList();
         if (folders.isEmpty) return _empty(context, s, filter.isNotEmpty);
         return ListView.builder(
-          padding: const EdgeInsets.only(bottom: 120),
+          padding: EdgeInsets.only(bottom: bottomClearance(context)),
           itemCount: folders.length,
           itemBuilder: (context, i) {
             final name = folders[i].path.split('/').where((e) => e.isNotEmpty).lastOrNull ?? folders[i].path;
@@ -289,7 +349,7 @@ class TrackCollectionScreen extends StatelessWidget {
                 OutlinedButton.icon(onPressed: () => s.player.playTracks(tracks, shuffle: true), icon: const Icon(Icons.shuffle), label: const Text('Shuffle')),
               ]),
             ),
-            Expanded(child: TrackListView(tracks: tracks, padding: const EdgeInsets.only(bottom: 120))),
+            Expanded(child: TrackListView(tracks: tracks, padding: EdgeInsets.only(bottom: bottomClearance(context)))),
           ]);
         },
       ),
