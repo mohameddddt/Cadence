@@ -14,6 +14,8 @@ import '../../features/integrations/metadata_clients.dart';
 import '../../features/library/library_editor.dart';
 import '../widgets/common.dart';
 import '../widgets/cover_art.dart';
+import '../widgets/cover_tint.dart';
+import '../widgets/kit.dart';
 import '../widgets/track_widgets.dart';
 import 'artist_screen.dart';
 import 'dashboard/album_editor.dart';
@@ -37,9 +39,15 @@ class AlbumScreen extends StatelessWidget {
           final tracks = data.tracks;
           final t = Theme.of(context);
           final discs = tracks.map((e) => e.discNo ?? 1).toSet();
-          return CustomScrollView(slivers: [
+          return CoverTintBuilder(
+            path: s.coverCache.albumCover(album.id),
+            builder: (context, tint) {
+              final scheme = t.colorScheme;
+              final top = tint == null ? scheme.surfaceContainerHighest : CoverTint.shade(tint, t.brightness == Brightness.dark ? 0.32 : 0.78);
+              return CustomScrollView(slivers: [
             SliverAppBar(
               pinned: true,
+              backgroundColor: top,
               actions: [
                 PopupMenuButton<String>(
                   onSelected: (v) => _menu(context, v, album, tracks),
@@ -55,23 +63,34 @@ class AlbumScreen extends StatelessWidget {
               ],
             ),
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(children: [
-                  Center(child: CoverArt(albumId: album.id, seed: album.title, size: 240, radius: 16)),
-                  const SizedBox(height: 16),
-                  Text(album.title, style: t.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800), textAlign: TextAlign.center),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 400),
+                decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [top, scheme.surface])),
+                padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Center(child: CoverArt(albumId: album.id, seed: album.title, size: 240, radius: 4)),
+                  const SizedBox(height: 20),
+                  Text(album.title, style: t.textTheme.headlineLarge),
+                  const SizedBox(height: 8),
                   InkWell(
                     onTap: album.artistId == null ? null : () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ArtistScreen(artistId: album.artistId!))),
-                    child: Text(album.displayArtist, style: t.textTheme.titleMedium?.copyWith(color: t.colorScheme.primary)),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      if (album.artistId != null) ...[CoverArt(artistId: album.artistId, seed: album.displayArtist, size: 24, circle: true), const SizedBox(width: 8)],
+                      Text(album.displayArtist, style: t.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
+                    ]),
                   ),
+                  const SizedBox(height: 6),
+                  Text(['Album', if (album.year != null) '${album.year}', '${tracks.length} songs', formatMs(album.durationMs)].join(' · '), style: t.textTheme.bodySmall?.copyWith(color: scheme.onSurfaceVariant)),
                   const SizedBox(height: 4),
-                  Text([if (album.year != null) '${album.year}', '${tracks.length} songs', formatMs(album.durationMs)].join(' · '), style: t.textTheme.bodySmall),
-                  const SizedBox(height: 16),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    FilledButton.icon(onPressed: tracks.isEmpty ? null : () => s.player.playTracks(tracks), icon: const Icon(Icons.play_arrow), label: const Text('Play')),
-                    const SizedBox(width: 12),
-                    OutlinedButton.icon(onPressed: tracks.isEmpty ? null : () => s.player.playTracks(tracks, shuffle: true), icon: const Icon(Icons.shuffle), label: const Text('Shuffle')),
+                  Row(children: [
+                    IconButton(tooltip: 'Add to playlist', icon: Icon(Icons.add_circle_outline_rounded, color: scheme.onSurfaceVariant), onPressed: tracks.isEmpty ? null : () => _menu(context, 'playlist', album, tracks)),
+                    IconButton(tooltip: 'Add to queue', icon: Icon(Icons.queue_music_rounded, color: scheme.onSurfaceVariant), onPressed: tracks.isEmpty ? null : () => _menu(context, 'queue', album, tracks)),
+                    const Spacer(),
+                    if (tracks.isNotEmpty) ...[
+                      IconButton(tooltip: 'Shuffle', iconSize: 28, icon: Icon(Icons.shuffle_rounded, color: scheme.primary), onPressed: () => s.player.playTracks(tracks, shuffle: true)),
+                      const SizedBox(width: 6),
+                      RoundIconButton(tooltip: 'Play', icon: Icons.play_arrow_rounded, size: 56, iconSize: 32, color: scheme.primary, iconColor: scheme.onPrimary, onPressed: () => s.player.playTracks(tracks)),
+                    ],
                   ]),
                 ]),
               ),
@@ -82,13 +101,15 @@ class AlbumScreen extends StatelessWidget {
                 final tr = tracks[i];
                 final showDisc = discs.length > 1 && (i == 0 || (tracks[i - 1].discNo ?? 1) != (tr.discNo ?? 1));
                 return Column(children: [
-                  if (showDisc) Align(alignment: Alignment.centerLeft, child: Padding(padding: const EdgeInsets.fromLTRB(16, 12, 16, 4), child: Text('Disc ${tr.discNo ?? 1}', style: t.textTheme.titleSmall))),
+                  if (showDisc) Align(alignment: Alignment.centerLeft, child: Padding(padding: const EdgeInsets.fromLTRB(16, 12, 16, 4), child: Eyebrow('Disc ${tr.discNo ?? 1}'))),
                   TrackTile(track: tr, showArt: false, leadingNumber: tr.trackNo ?? i + 1, subtitleOverride: tr.artistName != album.artistName ? tr.displayArtist : null, onTap: () => s.player.playTracks(tracks, index: i)),
                 ]);
               },
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 120)),
+            SliverToBoxAdapter(child: SizedBox(height: bottomClearance(context))),
           ]);
+            },
+          );
         },
       ),
     );

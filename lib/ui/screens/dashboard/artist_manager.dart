@@ -217,7 +217,7 @@ class _ArtistManagerState extends State<ArtistManager> {
                             title: f == ArtistFilter.all ? 'No artists match' : 'Nothing to fix here',
                             message: f == ArtistFilter.all ? null : 'No artists are flagged as "${f.label.toLowerCase()}".',
                           )
-                        : ListView.builder(padding: const EdgeInsets.only(bottom: 120), itemCount: list.length, itemBuilder: (context, i) => _row(context, s, list[i])),
+                        : ListView.builder(padding: EdgeInsets.only(bottom: bottomClearance(context)), itemCount: list.length, itemBuilder: (context, i) => _row(context, s, list[i])),
                   ),
                 ],
               );

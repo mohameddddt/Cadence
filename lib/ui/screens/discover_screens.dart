@@ -38,7 +38,7 @@ class _RadioScreenState extends State<RadioScreen> {
     final s = context.read<AppServices>();
     return Scaffold(
       appBar: AppBar(title: const Text('Internet radio')),
-      body: ListView(padding: const EdgeInsets.only(bottom: 120), children: [
+      body: ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [
         Padding(
           padding: const EdgeInsets.all(16),
           child: TextField(controller: _q, textInputAction: TextInputAction.search, onSubmitted: (_) => _search(), decoration: InputDecoration(border: const OutlineInputBorder(), hintText: 'Station name', suffixIcon: IconButton(icon: const Icon(Icons.search), onPressed: _search))),
@@ -135,7 +135,7 @@ class _PodcastsScreenState extends State<PodcastsScreen> {
     final s = context.read<AppServices>();
     return Scaffold(
       appBar: AppBar(title: const Text('Podcasts')),
-      body: ListView(padding: const EdgeInsets.only(bottom: 120), children: [
+      body: ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [
         Padding(
           padding: const EdgeInsets.all(16),
           child: TextField(
@@ -206,7 +206,7 @@ class PodcastDetailScreen extends StatelessWidget {
           if (snap.hasError) return EmptyState(icon: Icons.error_outline, title: 'Could not load the feed', message: '${snap.error}');
           final eps = snap.data!.episodes;
           return ListView.builder(
-            padding: const EdgeInsets.only(bottom: 120),
+            padding: EdgeInsets.only(bottom: bottomClearance(context)),
             itemCount: eps.length,
             itemBuilder: (context, i) {
               final e = eps[i];

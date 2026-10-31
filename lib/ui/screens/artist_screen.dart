@@ -58,7 +58,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
               expandedHeight: 300,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(artist.name, style: const TextStyle(shadows: [Shadow(blurRadius: 8, color: Colors.black54)])),
+                title: Text(artist.name, style: t.textTheme.headlineMedium?.copyWith(color: Colors.white, shadows: const [Shadow(blurRadius: 12, color: Colors.black54)])),
                 background: Stack(fit: StackFit.expand, children: [
                   CoverArt(artistId: artist.id, seed: artist.name, size: 600, radius: 0),
                   const DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.transparent, Colors.black54]))),
@@ -153,7 +153,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
               final d = await s.artistInfo.discography(artist);
               if (mounted) setState(() => _disco = d);
             } on Object catch (e) {
-              if (mounted) showSnack(context, 'Could not load discography: $e');
+              if (context.mounted) showSnack(context, 'Could not load discography: $e');
             }
           },
         ),

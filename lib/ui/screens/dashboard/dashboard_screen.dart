@@ -8,6 +8,7 @@ import '../../../core/models/library_models.dart';
 import '../../../features/library/library_scanner.dart';
 import '../../widgets/brand_logo.dart';
 import '../../widgets/common.dart';
+import '../../widgets/kit.dart';
 import '../identify_screens.dart';
 import 'album_manager.dart';
 import 'artist_editor.dart';
@@ -68,7 +69,8 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        toolbarHeight: screenTitleHeight,
+        title: const ScreenTitle('Dashboard', eyebrow: 'Library health'),
         actions: [
           IconButton(
             tooltip: 'Rescan library',
@@ -83,6 +85,9 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
         ],
         bottom: TabBar(
           controller: _tabs,
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 6),
           tabs: const [
             Tab(text: 'Overview'),
             Tab(text: 'Artists'),
@@ -142,7 +147,7 @@ class _OverviewTab extends StatelessWidget {
         final dupArtists = duplicateArtistIds(data.artists).length;
         final issues = noCover + noYear + noArtist + dupAlbums + noPhoto + noBio + dupArtists;
         return ListView(
-          padding: const EdgeInsets.only(bottom: 120),
+          padding: EdgeInsets.only(bottom: bottomClearance(context)),
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
@@ -343,67 +348,48 @@ class _OverviewTab extends StatelessWidget {
   }
 }
 
-/// Night-sky hero card: the song count, big, with the mark as a watermark.
+/// Ink hero card: the song count, large in the display face, with the mark as a watermark.
 class _Hero extends StatelessWidget {
   const _Hero({required this.stats});
   final LibraryStats stats;
 
   @override
   Widget build(BuildContext context) {
-    const onNight = Brand.cream;
+    final t = Theme.of(context);
+    final scheme = t.colorScheme;
+    final ink = scheme.onInverseSurface;
     return ClipRRect(
       borderRadius: BorderRadius.circular(28),
-      child: DecoratedBox(
-        decoration: const BoxDecoration(gradient: Brand.night),
+      child: ColoredBox(
+        color: scheme.inverseSurface,
         child: Stack(
           children: [
             Positioned(
               right: -34,
               top: -20,
               child: Opacity(
-                opacity: 0.32,
-                child: CustomPaint(size: const Size.square(190), painter: const BrandMarkPainter()),
+                opacity: 0.22,
+                child: CustomPaint(size: const Size.square(190), painter: BrandMarkPainter(mono: scheme.primary)),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(22, 22, 22, 22),
+              padding: const EdgeInsets.all(22),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'YOUR LIBRARY',
-                    style: TextStyle(color: onNight.withValues(alpha: 0.7), fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1.6),
-                  ),
+                  Eyebrow('Your library', color: ink.withValues(alpha: 0.7)),
                   const SizedBox(height: 8),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(
-                        formatCount(stats.tracks),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontFamily: Brand.fontFamily,
-                          fontSize: 44,
-                          height: 1.05,
-                          fontWeight: FontWeight.w800,
-                          fontVariations: [FontVariation.weight(800)],
-                          fontFeatures: tabularFigures,
-                          letterSpacing: -1.5,
-                        ),
-                      ),
+                      Text(formatCount(stats.tracks), style: t.textTheme.displayLarge?.copyWith(color: ink, fontFeatures: tabularFigures)),
                       const SizedBox(width: 8),
-                      Text(
-                        stats.tracks == 1 ? 'song' : 'songs',
-                        style: TextStyle(color: onNight.withValues(alpha: 0.85), fontSize: 16, fontWeight: FontWeight.w600),
-                      ),
+                      Text(stats.tracks == 1 ? 'song' : 'songs', style: t.textTheme.titleMedium?.copyWith(color: ink.withValues(alpha: 0.85))),
                     ],
                   ),
                   const SizedBox(height: 6),
-                  Text(
-                    Brand.tagline,
-                    style: TextStyle(color: Brand.amber.withValues(alpha: 0.95), fontSize: 13, fontWeight: FontWeight.w600),
-                  ),
+                  Text(Brand.tagline, style: t.textTheme.labelLarge?.copyWith(color: scheme.inversePrimary)),
                 ],
               ),
             ),

@@ -265,7 +265,7 @@ class _AlbumManagerState extends State<AlbumManager> {
                             title: f == AlbumFilter.all ? 'No albums match' : 'Nothing to fix here',
                             message: f == AlbumFilter.all ? null : 'No albums are flagged as "${f.label.toLowerCase()}".',
                           )
-                        : ListView.builder(padding: const EdgeInsets.only(bottom: 120), itemCount: list.length, itemBuilder: (context, i) => _row(context, s, list[i])),
+                        : ListView.builder(padding: EdgeInsets.only(bottom: bottomClearance(context)), itemCount: list.length, itemBuilder: (context, i) => _row(context, s, list[i])),
                   ),
                 ],
               );

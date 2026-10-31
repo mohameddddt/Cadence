@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +6,7 @@ import '../../core/models/library_models.dart';
 import '../../features/downloader/source_detect.dart';
 import '../widgets/common.dart';
 import '../widgets/cover_art.dart';
+import '../widgets/kit.dart';
 import 'search_screen.dart';
 
 /// Active / queued / finished / failed downloads with retry, cancel and logs (plan phase 8).
@@ -18,9 +18,10 @@ class DownloadsScreen extends StatelessWidget {
     final s = context.read<AppServices>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Downloads'),
+        toolbarHeight: screenTitleHeight,
+        title: const ScreenTitle('Downloads', eyebrow: 'Links to library'),
         actions: [
-          IconButton(tooltip: 'Add link', icon: const Icon(Icons.add_link), onPressed: () => showAddLinkDialog(context)),
+          PillButton(height: 40, icon: Icons.add_link_rounded, label: 'Add link', onPressed: () => showAddLinkDialog(context)),
           PopupMenuButton<String>(
             onSelected: (v) async {
               switch (v) {
@@ -40,14 +41,18 @@ class DownloadsScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(onPressed: () => showAddLinkDialog(context), icon: const Icon(Icons.add_link), label: const Text('Add link')),
       body: StreamBuilder<List<DownloadJob>>(
         stream: s.jobs.watchAll(),
         builder: (context, snap) {
           final jobs = snap.data;
           if (jobs == null) return const Center(child: CircularProgressIndicator());
           if (jobs.isEmpty) {
-            return const EmptyState(icon: Icons.download_for_offline_outlined, title: 'No downloads yet', message: 'Paste a link, share one from YouTube / SoundCloud / your browser, or use the Search tab.');
+            return EmptyState(
+              icon: Icons.download_for_offline_outlined,
+              title: 'No downloads yet',
+              message: 'Paste a link, share one from YouTube / SoundCloud / your browser, or use the Search tab.',
+              action: PillButton(icon: Icons.add_link_rounded, label: 'Paste a link', onPressed: () => showAddLinkDialog(context)),
+            );
           }
           final active = jobs.where((j) => j.status == JobStatus.running || j.status == JobStatus.postprocessing).toList();
           final queued = jobs.where((j) => j.status == JobStatus.queued).toList();
@@ -55,7 +60,7 @@ class DownloadsScreen extends StatelessWidget {
           final done = jobs.where((j) => j.status == JobStatus.done || j.status == JobStatus.cancelled).toList();
           return ListenableBuilder(
             listenable: s.downloads,
-            builder: (context, _) => ListView(padding: const EdgeInsets.only(bottom: 120), children: [
+            builder: (context, _) => ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [
               _EngineBanner(),
               if (active.isNotEmpty) ...[const SectionHeader('Active'), for (final j in active) _JobCard(job: j)],
               if (queued.isNotEmpty) ...[SectionHeader('Queued (${queued.length})'), for (final j in queued) _JobCard(job: j)],

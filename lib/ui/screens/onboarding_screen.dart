@@ -6,6 +6,7 @@ import '../../app/app_services.dart';
 import '../../app/brand.dart';
 import '../widgets/brand_logo.dart';
 import '../widgets/common.dart';
+import '../widgets/kit.dart';
 
 /// First launch: explain what the app needs (audio access, notifications), let the user add
 /// folders and set up downloads, then start scanning.
@@ -68,10 +69,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: ListView(padding: const EdgeInsets.all(24), children: [
           const SizedBox(height: 24),
           const Align(alignment: Alignment.centerLeft, child: BrandTile(size: 84)),
-          const SizedBox(height: 20),
-          Text('Welcome to ${Brand.name}', style: t.textTheme.headlineLarge),
-          const SizedBox(height: 4),
-          Text(Brand.tagline, style: t.textTheme.titleMedium?.copyWith(color: t.colorScheme.primary)),
+          const SizedBox(height: 28),
+          const Eyebrow('Welcome to'),
+          Text(Brand.name, style: t.textTheme.displayLarge),
+          Text(Brand.tagline, style: t.textTheme.headlineSmall?.copyWith(color: t.colorScheme.primary)),
           const SizedBox(height: 12),
           Text('Play your local music, download from many sources, and let the app tag, cover and add lyrics for you.', style: t.textTheme.bodyLarge),
           const SizedBox(height: 24),
