@@ -157,6 +157,26 @@ void main() {
     expect(rows, isEmpty, reason: 'cascade delete');
   });
 
+  test('decades, genre shelf and year ranges for Search', () async {
+    await repo.upsertTrack(draft('/1.mp3', 'One', album: 'A', year: 1987, genre: 'Rock'));
+    await repo.upsertTrack(draft('/2.mp3', 'Two', album: 'B', year: 1994, genre: 'Rock'));
+    await repo.upsertTrack(draft('/3.mp3', 'Three', album: 'B', year: 1999, genre: 'Raï'));
+    await repo.upsertTrack(draft('/4.mp3', 'Four', album: 'C', year: 2021, genre: 'rock'));
+    await repo.upsertTrack(draft('/5.mp3', 'Five', album: 'D'));
+
+    final decades = await repo.decades();
+    expect([for (final d in decades) (d.decade, d.count)], [(1980, 1), (1990, 2), (2020, 1)]);
+    expect(decades.every((d) => d.albumId != null), isTrue);
+
+    final genres = await repo.genreShelf();
+    expect(genres.first.name.toLowerCase(), 'rock', reason: 'biggest first, case-insensitive');
+    expect(genres.first.count, 3);
+    expect(genres.map((g) => g.name), contains('Raï'));
+
+    final nineties = await repo.tracksInYears(1990, 1999);
+    expect(nineties.map((t) => t.title), ['Two', 'Three']);
+  });
+
   test('playlists remember, replace and clear their picture', () async {
     final pl = await repo.createPlaylist('Night', coverPath: '/covers/p1.jpg');
     expect((await repo.playlistById(pl))!.coverPath, '/covers/p1.jpg');

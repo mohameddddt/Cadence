@@ -760,6 +760,35 @@ class LibraryRepository {
     return [for (final r in rows) (name: r['name'] as String, count: r['n'] as int)];
   }
 
+  /// Genres with an album to borrow a cover from, biggest first (Search's "Your genres").
+  Future<List<({String name, int count, int? albumId})>> genreShelf({int limit = 12}) async {
+    final rows = await db.rawQuery(
+      "SELECT genre AS name, COUNT(*) AS n, MAX(album_id) AS album FROM tracks WHERE missing = 0 AND genre IS NOT NULL AND genre != '' "
+      'GROUP BY genre COLLATE NOCASE ORDER BY n DESC, genre COLLATE NOCASE LIMIT ?',
+      [limit],
+    );
+    return [for (final r in rows) (name: r['name'] as String, count: r['n'] as int, albumId: r['album'] as int?)];
+  }
+
+  /// Song counts per decade (1990 for the 90s), oldest first, with an album for a cover.
+  Future<List<({int decade, int count, int? albumId})>> decades() async {
+    final rows = await db.rawQuery(
+      'SELECT (year / 10) * 10 AS d, COUNT(*) AS n, MAX(album_id) AS album FROM tracks '
+      'WHERE missing = 0 AND year IS NOT NULL AND year >= 1900 GROUP BY d ORDER BY d',
+    );
+    return [for (final r in rows) (decade: r['d'] as int, count: r['n'] as int, albumId: r['album'] as int?)];
+  }
+
+  /// Songs released in [from]..[to] (inclusive), by year then album order.
+  Future<List<Track>> tracksInYears(int from, int to) async {
+    final rows = await db.rawQuery(
+      'SELECT * FROM tracks WHERE missing = 0 AND year BETWEEN ? AND ? '
+      'ORDER BY year, album_title COLLATE NOCASE, disc_no, track_no',
+      [from, to],
+    );
+    return rows.map(Track.fromMap).toList();
+  }
+
   Future<List<({String path, int count})>> folders() async {
     final rows = await db.rawQuery(
       "SELECT folder AS path, COUNT(*) AS n FROM tracks WHERE missing = 0 AND folder IS NOT NULL AND folder != '' "
