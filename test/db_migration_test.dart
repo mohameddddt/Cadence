@@ -70,6 +70,37 @@ void main() {
     dir.deleteSync(recursive: true);
   });
 
+  test('v1 databases gain playlist pictures and keep their playlists', () async {
+    final factory = testFactory();
+    final dir = Directory.systemTemp.createTempSync('mig2');
+    final path = '${dir.path}/v1.db';
+    final v1 = await AppDatabase.open(
+      path: path,
+      factory: factory,
+      version: 1,
+      create: const ['CREATE TABLE playlists(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, is_smart INTEGER NOT NULL DEFAULT 0, smart_rules TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL)'],
+      migrationList: const [],
+      withSearchIndex: false,
+      singleInstance: false,
+    );
+    await v1.db.insert('playlists', {'name': 'Road trip', 'created_at': 1, 'updated_at': 1});
+    await v1.close();
+    final now = await AppDatabase.open(path: path, factory: factory, withSearchIndex: false, singleInstance: false);
+    final row = (await now.db.query('playlists')).single;
+    expect(row['name'], 'Road trip');
+    expect(row.containsKey('cover_path'), isTrue);
+    expect(row['cover_path'], isNull);
+    await now.close();
+    dir.deleteSync(recursive: true);
+  });
+
+  test('fresh databases have the same playlist columns as migrated ones', () async {
+    final db = await openTestDb();
+    final cols = (await db.db.rawQuery('PRAGMA table_info(playlists)')).map((r) => r['name']).toSet();
+    expect(cols, contains('cover_path'));
+    await db.close();
+  });
+
   test('a missing migration step fails loudly instead of corrupting data', () async {
     final db = await openDatabaseForTest();
     expect(

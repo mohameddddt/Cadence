@@ -157,6 +157,16 @@ void main() {
     expect(rows, isEmpty, reason: 'cascade delete');
   });
 
+  test('playlists remember, replace and clear their picture', () async {
+    final pl = await repo.createPlaylist('Night', coverPath: '/covers/p1.jpg');
+    expect((await repo.playlistById(pl))!.coverPath, '/covers/p1.jpg');
+    expect((await repo.playlists()).single.coverPath, '/covers/p1.jpg');
+    await repo.setPlaylistCover(pl, '/covers/p2.jpg');
+    expect((await repo.playlistById(pl))!.coverPath, '/covers/p2.jpg');
+    await repo.setPlaylistCover(pl, null);
+    expect((await repo.playlistById(pl))!.coverPath, isNull);
+  });
+
   test('smart playlist evaluates rules against the live library', () async {
     final a = await repo.upsertTrack(draft('/a.mp3', 'Rock A', artist: 'X', genre: 'Rock', year: 1999));
     await repo.upsertTrack(draft('/b.mp3', 'Jazz B', artist: 'Y', genre: 'Jazz', year: 2005));

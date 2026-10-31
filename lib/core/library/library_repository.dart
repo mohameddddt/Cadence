@@ -823,11 +823,12 @@ class LibraryRepository {
     return rows.isEmpty ? null : Playlist.fromMap(rows.first);
   }
 
-  Future<int> createPlaylist(String name, {SmartRules? smart}) async {
+  Future<int> createPlaylist(String name, {SmartRules? smart, String? coverPath}) async {
     final id = await db.insert('playlists', {
       'name': name.trim().isEmpty ? 'New playlist' : name.trim(),
       'is_smart': smart == null ? 0 : 1,
       'smart_rules': smart?.toJson(),
+      'cover_path': coverPath,
       'created_at': _now,
       'updated_at': _now,
     });
@@ -837,6 +838,12 @@ class LibraryRepository {
 
   Future<void> renamePlaylist(int id, String name) async {
     await db.update('playlists', {'name': name.trim(), 'updated_at': _now}, where: 'id = ?', whereArgs: [id]);
+    appDb.notifyChanged();
+  }
+
+  /// Sets or clears (null) the playlist's own picture.
+  Future<void> setPlaylistCover(int id, String? coverPath) async {
+    await db.update('playlists', {'cover_path': coverPath, 'updated_at': _now}, where: 'id = ?', whereArgs: [id]);
     appDb.notifyChanged();
   }
 

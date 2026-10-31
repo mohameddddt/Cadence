@@ -131,11 +131,15 @@ class Playlist {
     required this.updatedAt,
     this.smartRules,
     this.trackCount = 0,
+    this.coverPath,
   });
 
   final int id;
   final String name;
   final bool isSmart;
+
+  /// A picture the user chose, copied into app storage.
+  final String? coverPath;
   final String? smartRules;
   final int createdAt;
   final int updatedAt;
@@ -149,6 +153,7 @@ class Playlist {
         createdAt: m['created_at'] as int,
         updatedAt: m['updated_at'] as int,
         trackCount: (m['track_count'] as int?) ?? 0,
+        coverPath: m['cover_path'] as String?,
       );
 }
 

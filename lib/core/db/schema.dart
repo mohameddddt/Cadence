@@ -5,7 +5,7 @@
 ///     produced without adding a [Migration] that brings old databases to the same shape;
 ///  2. bump [schemaVersion];
 ///  3. add a test in test/db_migration_test.dart.
-const int schemaVersion = 1;
+const int schemaVersion = 2;
 
 class Migration {
   const Migration({required this.from, required this.to, required this.statements});
@@ -15,8 +15,11 @@ class Migration {
   final List<String> statements;
 }
 
-/// Ordered list of upgrades. Empty while v1 is the first shipped schema.
-const List<Migration> migrations = [];
+/// Ordered list of upgrades.
+const List<Migration> migrations = [
+  // v2: playlists can have their own cover picture.
+  Migration(from: 1, to: 2, statements: ['ALTER TABLE playlists ADD COLUMN cover_path TEXT']),
+];
 
 const List<String> createStatements = [
   '''
@@ -110,7 +113,8 @@ CREATE TABLE playlists(
   is_smart INTEGER NOT NULL DEFAULT 0,
   smart_rules TEXT,
   created_at INTEGER NOT NULL,
-  updated_at INTEGER NOT NULL
+  updated_at INTEGER NOT NULL,
+  cover_path TEXT
 )''',
   '''
 CREATE TABLE playlist_tracks(
