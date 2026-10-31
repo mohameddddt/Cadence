@@ -5,7 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/app_config.dart';
 
+/// `amoled` is kept so older settings still load; it now means dark + [SettingsStore.pureBlack].
 enum ThemePreference { system, light, dark, amoled }
+
+/// Colour palettes: each tints the app's paper and ink and sets its single accent.
+/// `custom` is built from [SettingsStore.customHue] and [SettingsStore.customTint].
+enum AppPalette { green, coral, sage, ocean, amber, rose, violet, ink, custom }
+
+/// Display + body typeface pairings.
+enum FontPairing { clean, editorial, classic, modern, rounded, cadence, system }
 
 enum ReplayGainMode { off, track, album }
 
@@ -241,8 +249,50 @@ class SettingsStore extends ChangeNotifier {
 
   // --- appearance ----------------------------------------------------------
 
-  ThemePreference get themePreference => _enum('ui.theme', ThemePreference.values, ThemePreference.system);
-  Future<void> setThemePreference(ThemePreference v) => _set('ui.theme', v.name);
+  ThemePreference get themePreference => _enum('ui.theme', ThemePreference.values, ThemePreference.dark);
+  Future<void> setThemePreference(ThemePreference v) async {
+    // Moving off the legacy AMOLED choice keeps its black backgrounds as the pure-black switch.
+    if (themePreference == ThemePreference.amoled && v != ThemePreference.amoled) await _prefs.setBool('ui.pureBlack', true);
+    await _set('ui.theme', v.name);
+  }
+
+  /// Black backgrounds in dark mode (OLED).
+  bool get pureBlack => _b('ui.pureBlack', false) || themePreference == ThemePreference.amoled;
+  Future<void> setPureBlack(bool v) async {
+    if (!v && themePreference == ThemePreference.amoled) await _prefs.setString('ui.theme', ThemePreference.dark.name);
+    await _set('ui.pureBlack', v);
+  }
+
+  AppPalette get palette => _enum('ui.palette', AppPalette.values, AppPalette.green);
+  Future<void> setPalette(AppPalette v) => _set('ui.palette', v.name);
+
+  /// Hue (0-360) of the custom palette's accent.
+  double get customHue => _d('ui.customHue', 160);
+  Future<void> setCustomHue(double v) => _set('ui.customHue', v);
+
+  /// How strongly the custom colour tints the background, 0 (neutral) to 1 (rich).
+  double get customTint => _d('ui.customTint', 0.5);
+  Future<void> setCustomTint(double v) => _set('ui.customTint', v);
+
+  FontPairing get fontPairing => _enum('ui.fonts', FontPairing.values, FontPairing.clean);
+  Future<void> setFontPairing(FontPairing v) => _set('ui.fonts', v.name);
+
+  /// Last searches, newest first (at most 8, no duplicates).
+  List<String> get recentSearches => _prefs.getStringList('search.recent') ?? const [];
+  Future<void> addRecentSearch(String q) {
+    final t = q.trim();
+    if (t.isEmpty) return Future.value();
+    // Typing "ab", "abb", "abba" keeps only "abba": earlier prefixes of the new query drop out.
+    final lower = t.toLowerCase();
+    final list = [t, ...recentSearches.where((e) => !lower.startsWith(e.toLowerCase()) && !e.toLowerCase().startsWith(lower))].take(8).toList();
+    return _set('search.recent', list);
+  }
+
+  Future<void> clearRecentSearches() => _set('search.recent', null);
+
+  /// Blurred cover art behind Now Playing.
+  bool get ambientBackdrop => _b('ui.ambient', true);
+  Future<void> setAmbientBackdrop(bool v) => _set('ui.ambient', v);
 
   bool get dynamicColor => _b('ui.dynamic', false);
   Future<void> setDynamicColor(bool v) => _set('ui.dynamic', v);
