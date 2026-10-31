@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../app/app_services.dart';
+import '../../app/theme.dart';
 import '../../core/models/library_models.dart';
 import '../../core/models/track.dart';
 import '../../features/playback/media_items.dart';
@@ -11,9 +12,11 @@ import '../screens/album_screen.dart';
 import '../screens/artist_screen.dart';
 import '../screens/identify_screens.dart';
 import '../screens/lyrics_sheet.dart';
+import '../screens/playlist_editor.dart';
 import '../screens/tag_editor_screen.dart';
 import 'common.dart';
 import 'cover_art.dart';
+import 'kit.dart';
 
 /// One song row: art, title, "artist - album", duration, overflow menu.
 class TrackTile extends StatelessWidget {
@@ -53,14 +56,21 @@ class TrackTile extends StatelessWidget {
       onTap: onTap,
       onLongPress: () => showTrackMenu(context, track, playlistId: playlistId, playlistEntryId: playlistEntryId),
       leading: leadingNumber != null
-          ? SizedBox(width: 40, child: Center(child: current ? Icon(playing ? Icons.graphic_eq : Icons.pause, color: color) : Text('$leadingNumber', style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.onSurfaceVariant))))
+          ? SizedBox(width: 40, child: Center(child: current ? PlayingBars(playing: playing, color: color) : Text('$leadingNumber', style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.onSurfaceVariant))))
           : showArt
               ? Stack(alignment: Alignment.center, children: [
-                  CoverArt(track: track, size: 48),
-                  if (current) Container(width: 48, height: 48, decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(8)), child: Icon(playing ? Icons.graphic_eq : Icons.pause, color: Colors.white)),
+                  CoverArt(track: track, size: 50, radius: 4),
+                  if (current)
+                    Container(
+                      width: 50,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.62), borderRadius: BorderRadius.circular(4)),
+                      child: PlayingBars(playing: playing, color: Colors.white),
+                    ),
                 ])
               : null,
-      title: Text(track.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: color, fontWeight: current ? FontWeight.w700 : null)),
+      title: Text(track.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: color, fontWeight: current ? FontWeight.w800 : null)),
       subtitle: Text(
         subtitleOverride ?? '${track.displayArtist}${track.albumTitle == null ? '' : '  •  ${track.albumTitle}'}',
         maxLines: 1,
@@ -69,12 +79,12 @@ class TrackTile extends StatelessWidget {
       trailing: trailing ??
           Row(mainAxisSize: MainAxisSize.min, children: [
             if (unidentified) Tooltip(message: 'Possible tag match waiting for review', child: Icon(Icons.auto_fix_high, size: 18, color: t.colorScheme.tertiary)),
-            if (track.loved) Padding(padding: const EdgeInsets.only(left: 4), child: Icon(Icons.favorite, size: 16, color: t.colorScheme.error)),
+            if (track.loved) const Padding(padding: EdgeInsets.only(left: 4), child: Icon(Icons.favorite_rounded, size: 16, color: favoriteRed)),
             const SizedBox(width: 6),
-            Text(formatMs(track.durationMs), style: t.textTheme.bodySmall),
+            Text(formatMs(track.durationMs), style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant, fontFeatures: const [FontFeature.tabularFigures()])),
             IconButton(
               tooltip: 'More',
-              icon: const Icon(Icons.more_vert),
+              icon: Icon(Icons.more_vert_rounded, color: t.colorScheme.onSurfaceVariant),
               onPressed: () => showTrackMenu(context, track, playlistId: playlistId, playlistEntryId: playlistEntryId),
             ),
           ]),
@@ -301,20 +311,26 @@ Future<void> showAddToPlaylistSheet(BuildContext context, List<Track> tracks) {
           final lists = (snap.data ?? const <Playlist>[]).where((p) => !p.isSmart).toList();
           return ListView(shrinkWrap: true, children: [
             ListTile(
-              leading: const Icon(Icons.add),
+              leading: Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.inverseSurface, borderRadius: BorderRadius.circular(12)),
+                child: Icon(Icons.add_rounded, color: Theme.of(context).colorScheme.onInverseSurface),
+              ),
               title: const Text('New playlist'),
+              subtitle: const Text('Name it and add a picture'),
               onTap: () async {
-                final name = await promptText(context, title: 'New playlist', hint: 'Name');
-                if (name == null) return;
-                final id = await services.repo.createPlaylist(name);
+                final id = await showPlaylistEditor(context);
+                if (id == null) return;
                 await services.repo.addToPlaylist(id, tracks.map((t) => t.id));
+                final created = await services.repo.playlistById(id);
                 if (sheet.mounted) Navigator.pop(sheet);
-                if (context.mounted) showSnack(context, 'Added to "$name"');
+                if (context.mounted) showSnack(context, 'Added to "${created?.name ?? 'playlist'}"');
               },
             ),
             for (final p in lists)
               ListTile(
-                leading: const Icon(Icons.queue_music),
+                leading: PlaylistCover(playlist: p, size: 48, radius: 12),
                 title: Text(p.name),
                 subtitle: Text('${p.trackCount} songs'),
                 onTap: () async {

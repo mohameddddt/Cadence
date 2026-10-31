@@ -117,10 +117,8 @@ class _LyricsViewState extends State<LyricsView> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: AnimatedDefaultTextStyle(
                     duration: const Duration(milliseconds: 250),
-                    style: (isActive ? t.textTheme.headlineSmall : t.textTheme.titleLarge)!.copyWith(
-                      color: isActive ? active : base.withValues(alpha: 0.55),
-                      fontWeight: isActive ? FontWeight.w800 : FontWeight.w600,
-                    ),
+                    // One face and size for every line, so only the colour moves.
+                    style: t.textTheme.headlineMedium!.copyWith(color: isActive ? active : base.withValues(alpha: 0.38)),
                     child: Text(line.text.isEmpty ? '♪' : line.text, textAlign: TextAlign.center),
                   ),
                 ),

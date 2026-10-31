@@ -14,9 +14,10 @@ import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
 import 'screens/search_screen.dart';
 import 'widgets/common.dart';
+import 'widgets/kit.dart';
 import 'widgets/mini_player.dart';
 
-/// Bottom navigation + always-on mini player, share-intent handling, global snackbars.
+/// Bottom bar + always-on mini player, share-intent handling, global snackbars.
 class Shell extends StatefulWidget {
   const Shell({super.key});
 
@@ -76,8 +77,8 @@ class _ShellState extends State<Shell> {
     final s = context.read<AppServices>();
     final pages = <Widget>[
       HomeScreen(goTo: (i) => setState(() => _index = i)),
-      const LibraryScreen(),
       const SearchScreen(),
+      const LibraryScreen(),
       const DownloadsScreen(),
       const DashboardScreen(),
     ];
@@ -87,6 +88,8 @@ class _ShellState extends State<Shell> {
         if (!didPop) setState(() => _index = 0);
       },
       child: Scaffold(
+        // Content scrolls under the bar; its height reaches the tabs as bottom padding.
+        extendBody: true,
         body: IndexedStack(index: _index, children: pages),
         bottomNavigationBar: Column(mainAxisSize: MainAxisSize.min, children: [
           const MiniPlayer(),
@@ -94,19 +97,15 @@ class _ShellState extends State<Shell> {
             stream: s.jobs.watchAll(),
             builder: (context, snap) {
               final active = (snap.data ?? const <DownloadJob>[]).where((j) => j.status.isActive).length;
-              return NavigationBar(
+              return BottomBar(
                 selectedIndex: _index,
-                onDestinationSelected: (i) => setState(() => _index = i),
-                destinations: [
-                  const NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
-                  const NavigationDestination(icon: Icon(Icons.library_music_outlined), selectedIcon: Icon(Icons.library_music), label: 'Library'),
-                  const NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
-                  NavigationDestination(
-                    icon: Badge(isLabelVisible: active > 0, label: Text('$active'), child: const Icon(Icons.download_outlined)),
-                    selectedIcon: Badge(isLabelVisible: active > 0, label: Text('$active'), child: const Icon(Icons.download)),
-                    label: 'Downloads',
-                  ),
-                  const NavigationDestination(icon: Icon(Icons.dashboard_outlined), selectedIcon: Icon(Icons.dashboard), label: 'Dashboard'),
+                onSelect: (i) => setState(() => _index = i),
+                items: [
+                  const DockItem('Home', Icons.home_outlined, Icons.home_filled),
+                  const DockItem('Search', Icons.search_rounded, Icons.manage_search_rounded),
+                  const DockItem('Your Library', Icons.library_music_outlined, Icons.library_music),
+                  DockItem('Downloads', Icons.download_for_offline_outlined, Icons.download_for_offline, badge: active),
+                  const DockItem('Dashboard', Icons.space_dashboard_outlined, Icons.space_dashboard),
                 ],
               );
             },

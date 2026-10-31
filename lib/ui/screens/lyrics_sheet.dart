@@ -115,7 +115,7 @@ class _LyricsSheetState extends State<_LyricsSheet> {
           subtitle: Text('${r.albumName ?? ''}${r.durationSec == null ? '' : ' · ${formatDuration(Duration(seconds: r.durationSec!.round()))}'}${r.hasSynced ? ' · synced' : ''}'),
           onTap: () async {
             final row = await s.lyrics.choose(widget.track, r);
-            if (!mounted) return;
+            if (!context.mounted) return;
             setState(() => _row = row);
             showSnack(context, 'Lyrics replaced');
           },
@@ -153,7 +153,7 @@ class _LyricsSheetState extends State<_LyricsSheet> {
             onPressed: () async {
               final g = _genius ?? await s.lyrics.geniusInfo(widget.track);
               if (g == null) {
-                if (mounted) showSnack(context, 'No Genius page found');
+                if (context.mounted) showSnack(context, 'No Genius page found');
                 return;
               }
               _genius = g;

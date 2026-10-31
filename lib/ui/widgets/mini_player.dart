@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/app_services.dart';
+import '../../core/models/track.dart';
 import '../../features/playback/media_items.dart';
 import '../screens/now_playing_screen.dart';
 import 'cover_art.dart';
+import 'cover_tint.dart';
 
-/// Always-visible player above the navigation bar. Tap to expand, swipe sideways to skip,
-/// swipe up to open (plan phase 8 gestures).
+/// Always-visible player above the bottom bar, tinted with the cover's colour. Tap to expand,
+/// swipe sideways to skip, swipe up to open (plan phase 8 gestures).
 class MiniPlayer extends StatelessWidget {
   const MiniPlayer({super.key});
 
@@ -21,7 +23,9 @@ class MiniPlayer extends StatelessWidget {
       builder: (context, snap) {
         final item = snap.data;
         if (item == null) return const SizedBox.shrink();
-        final t = Theme.of(context);
+        final scheme = Theme.of(context).colorScheme;
+        final art = item.artUri;
+        final coverPath = services.coverCache.albumCover(item.albumId) ?? (art != null && art.scheme == 'file' ? art.toFilePath() : null);
         return Semantics(
           container: true,
           label: 'Now playing ${item.title} by ${item.artist ?? 'unknown artist'}. Double tap to open.',
@@ -35,42 +39,86 @@ class MiniPlayer extends StatelessWidget {
               if (v < -400) player.next();
               if (v > 400) player.previous();
             },
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(8, 0, 8, 4),
-              decoration: BoxDecoration(color: t.colorScheme.secondaryContainer, borderRadius: BorderRadius.circular(16)),
-              clipBehavior: Clip.antiAlias,
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
-                  child: Row(children: [
-                    _MiniArt(item: item),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                        Text(item.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.titleSmall?.copyWith(color: t.colorScheme.onSecondaryContainer, fontWeight: FontWeight.w700)),
-                        Text(item.artist ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSecondaryContainer.withValues(alpha: 0.8))),
+            child: CoverTintBuilder(
+              path: coverPath,
+              builder: (context, tint) {
+                // On a cover tint the text is white; without one it follows the theme.
+                final bg = tint == null ? scheme.surfaceContainerHigh : CoverTint.shade(tint, 0.24);
+                final fg = tint == null ? scheme.onSurface : Colors.white;
+                final fgSub = tint == null ? scheme.onSurfaceVariant : Colors.white70;
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 400),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  height: 60,
+                  decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(8)),
+                  clipBehavior: Clip.antiAlias,
+                  child: Stack(children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
+                      child: Row(children: [
+                        Hero(tag: 'now-playing-art', child: _MiniArt(item: item)),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+                            Text(item.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: fg)),
+                            Text(item.artist ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: fgSub)),
+                          ]),
+                        ),
+                        if (item.trackId != null) _SavedButton(trackId: item.trackId!, color: fg),
+                        StreamBuilder(
+                          stream: player.state,
+                          builder: (context, st) {
+                            final playing = st.data?.playing ?? false;
+                            final loading = st.data?.processingState == AudioProcessingState.loading || st.data?.processingState == AudioProcessingState.buffering;
+                            if (loading && playing) {
+                              return SizedBox.square(dimension: 48, child: Padding(padding: const EdgeInsets.all(14), child: CircularProgressIndicator(strokeWidth: 2, strokeCap: StrokeCap.round, color: fg)));
+                            }
+                            return IconButton(
+                              tooltip: playing ? 'Pause' : 'Play',
+                              iconSize: 32,
+                              color: fg,
+                              icon: Icon(playing ? Icons.pause_rounded : Icons.play_arrow_rounded),
+                              onPressed: player.toggle,
+                            );
+                          },
+                        ),
                       ]),
                     ),
-                    StreamBuilder(
-                      stream: player.state,
-                      builder: (context, st) {
-                        final playing = st.data?.playing ?? false;
-                        final loading = st.data?.processingState == AudioProcessingState.loading || st.data?.processingState == AudioProcessingState.buffering;
-                        return Row(mainAxisSize: MainAxisSize.min, children: [
-                          IconButton(tooltip: 'Previous', icon: const Icon(Icons.skip_previous), color: t.colorScheme.onSecondaryContainer, onPressed: player.previous),
-                          loading && playing
-                              ? const SizedBox(width: 48, height: 48, child: Padding(padding: EdgeInsets.all(12), child: CircularProgressIndicator(strokeWidth: 3)))
-                              : IconButton.filled(tooltip: playing ? 'Pause' : 'Play', icon: Icon(playing ? Icons.pause : Icons.play_arrow), onPressed: player.toggle),
-                          IconButton(tooltip: 'Next', icon: const Icon(Icons.skip_next), color: t.colorScheme.onSecondaryContainer, onPressed: player.next),
-                        ]);
-                      },
-                    ),
+                    Positioned(left: 8, right: 8, bottom: 0, child: _MiniProgress(item: item, color: fg)),
                   ]),
-                ),
-                _MiniProgress(item: item),
-              ]),
+                );
+              },
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+/// Saved-to-favourites toggle: an accent check when saved, an outlined plus when not.
+class _SavedButton extends StatelessWidget {
+  const _SavedButton({required this.trackId, required this.color});
+  final int trackId;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final s = context.read<AppServices>();
+    return StreamBuilder<Track?>(
+      stream: s.db.watch(() => s.repo.trackById(trackId)),
+      builder: (context, snap) {
+        final loved = snap.data?.loved ?? false;
+        return IconButton(
+          tooltip: loved ? 'Remove from favourites' : 'Add to favourites',
+          icon: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (c, a) => ScaleTransition(scale: a, child: c),
+            child: loved
+                ? Icon(Icons.check_circle_rounded, key: const ValueKey(true), color: Theme.of(context).colorScheme.primary, size: 26)
+                : Icon(Icons.add_circle_outline_rounded, key: const ValueKey(false), color: color, size: 26),
+          ),
+          onPressed: () => s.repo.setLoved(trackId, !loved),
         );
       },
     );
@@ -90,23 +138,29 @@ class _MiniArt extends StatelessWidget {
       url: art != null && art.scheme.startsWith('http') ? art.toString() : null,
       seed: item.album ?? item.title,
       size: 44,
-      radius: 10,
+      radius: 4,
     );
   }
 }
 
 class _MiniProgress extends StatelessWidget {
-  const _MiniProgress({required this.item});
+  const _MiniProgress({required this.item, required this.color});
   final MediaItem item;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     final services = context.read<AppServices>();
     final total = item.duration?.inMilliseconds ?? 0;
-    if (total <= 0) return const SizedBox(height: 2);
+    if (total <= 0) return const SizedBox.shrink();
     return StreamBuilder<Duration>(
       stream: services.player.position,
-      builder: (context, snap) => LinearProgressIndicator(minHeight: 2, value: ((snap.data?.inMilliseconds ?? 0) / total).clamp(0.0, 1.0), backgroundColor: Colors.transparent),
+      builder: (context, snap) => LinearProgressIndicator(
+        minHeight: 2.5,
+        value: ((snap.data?.inMilliseconds ?? 0) / total).clamp(0.0, 1.0),
+        color: color,
+        backgroundColor: color.withValues(alpha: 0.2),
+      ),
     );
   }
 }
