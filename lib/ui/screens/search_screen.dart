@@ -11,9 +11,12 @@ import '../../features/sources/source_provider.dart';
 import '../../features/sources/unified_search.dart';
 import '../widgets/common.dart';
 import '../widgets/cover_art.dart';
+import '../widgets/kit.dart';
 import '../widgets/track_widgets.dart';
 import 'album_screen.dart';
 import 'artist_screen.dart';
+import 'downloads_screen.dart';
+import 'search_explore.dart';
 
 /// Queue a remote result and tell the user what happened (new / duplicate / already queued).
 Future<void> downloadRemote(BuildContext context, RemoteTrack t) async {
@@ -92,6 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
       await _resolveLink(url);
       return;
     }
+    if (text.length >= 2) s.settings.addRecentSearch(text);
     _sub = s.search.search(text, onlyProviders: _providerFilter.isEmpty ? null : _providerFilter).listen((v) {
       if (mounted) setState(() => _sections = v);
     });
@@ -121,69 +125,106 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
+  void _searchFor(String q) {
+    _controller.text = q;
+    _controller.selection = TextSelection.collapsed(offset: q.length);
+    _run();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final s = context.read<AppServices>();
-    final providers = s.sources.enabled.where((p) => p.supportsSearch).toList();
+    final scheme = Theme.of(context).colorScheme;
+    // A bright bar on the dark page (and an ink one on a light page).
+    final fieldText = scheme.surface;
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 8,
-        title: TextField(
-          controller: _controller,
-          textInputAction: TextInputAction.search,
-          onChanged: _onChanged,
-          onSubmitted: (_) => _run(),
-          decoration: InputDecoration(
-            hintText: 'Search or paste a link',
-            border: InputBorder.none,
-            prefixIcon: const Icon(Icons.search),
-            suffixIcon: _controller.text.isEmpty ? null : IconButton(icon: const Icon(Icons.close), onPressed: () {
-              _controller.clear();
-              _run();
-            }),
-          ),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(48),
-          child: SizedBox(
-            height: 48,
-            child: ListView(scrollDirection: Axis.horizontal, padding: const EdgeInsets.symmetric(horizontal: 12), children: [
-              for (final p in providers)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: FilterChip(
-                    label: Text(p.label),
-                    selected: _providerFilter.contains(p.id),
-                    onSelected: (v) {
-                      setState(() => v ? _providerFilter.add(p.id) : _providerFilter.remove(p.id));
-                      if (_query.isNotEmpty) _run();
-                    },
-                  ),
-                ),
+      body: SafeArea(
+        bottom: false,
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 8, 12),
+            child: Row(children: [
+              Expanded(child: Text('Search', style: Theme.of(context).textTheme.displaySmall)),
+              IconButton(tooltip: 'Paste a link', icon: const Icon(Icons.add_link_rounded), onPressed: () => showAddLinkDialog(context)),
             ]),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              height: 48,
+              decoration: BoxDecoration(color: scheme.onSurface, borderRadius: BorderRadius.circular(8)),
+              child: Row(children: [
+                Padding(padding: const EdgeInsets.symmetric(horizontal: 12), child: Icon(Icons.search_rounded, color: fieldText, size: 26)),
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    textInputAction: TextInputAction.search,
+                    onChanged: _onChanged,
+                    onSubmitted: (_) => _run(),
+                    cursorColor: fieldText,
+                    style: TextStyle(color: fieldText, fontWeight: FontWeight.w600, fontSize: 15),
+                    decoration: InputDecoration(
+                      filled: false,
+                      isCollapsed: true,
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      hintText: 'Songs, artists or a link',
+                      hintStyle: TextStyle(color: fieldText.withValues(alpha: 0.6), fontWeight: FontWeight.w600, fontSize: 15),
+                    ),
+                  ),
+                ),
+                if (_controller.text.isNotEmpty)
+                  IconButton(
+                    tooltip: 'Clear',
+                    icon: Icon(Icons.close_rounded, color: fieldText),
+                    onPressed: () {
+                      _controller.clear();
+                      _run();
+                    },
+                  ),
+              ]),
+            ),
+          ),
+          Expanded(child: _body(context)),
+        ]),
       ),
-      body: _body(context),
+    );
+  }
+
+  /// Online-source filters, shown with results.
+  Widget _providerChips(BuildContext context) {
+    final s = context.read<AppServices>();
+    final providers = s.sources.enabled.where((p) => p.supportsSearch).toList();
+    return SizedBox(
+      height: 52,
+      child: ListView(scrollDirection: Axis.horizontal, padding: const EdgeInsets.fromLTRB(16, 12, 16, 4), children: [
+        for (final p in providers)
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: PillChip(
+              label: p.label,
+              selected: _providerFilter.contains(p.id),
+              onTap: () {
+                final on = !_providerFilter.contains(p.id);
+                setState(() => on ? _providerFilter.add(p.id) : _providerFilter.remove(p.id));
+                if (_query.isNotEmpty) _run();
+              },
+            ),
+          ),
+      ]),
     );
   }
 
   Widget _body(BuildContext context) {
-    final s = context.read<AppServices>();
     if (_resolving) return const Center(child: CircularProgressIndicator());
     if (_linkError != null) return EmptyState(icon: Icons.link_off, title: 'Link not supported', message: _linkError);
     if (_linked != null) {
-      return ListView(padding: const EdgeInsets.only(bottom: 120), children: [const SectionHeader('Link'), RemoteTile(track: _linked!)]);
+      return ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [const SectionHeader('Link'), RemoteTile(track: _linked!)]);
     }
-    if (_query.isEmpty) {
-      return EmptyState(
-        icon: Icons.travel_explore,
-        title: 'Find music anywhere',
-        message: 'Search your library and ${s.sources.enabled.where((p) => p.supportsSearch).length} online sources at once. Paste a YouTube, SoundCloud, Bandcamp or Internet Archive link to download it.',
-      );
-    }
+    if (_query.isEmpty) return SearchExplore(onSearch: _searchFor);
     if (_sections.isEmpty) return const Center(child: CircularProgressIndicator());
-    return ListView(padding: const EdgeInsets.only(bottom: 120), children: [
+    return ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [
+      _providerChips(context),
       for (final sec in _sections) ..._section(context, sec),
     ]);
   }
