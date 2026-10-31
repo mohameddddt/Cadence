@@ -47,3 +47,58 @@ flutter:
     - family: Sora
       fonts:
         - asset: assets/fonts/Sora.ttf
+    - family: InstrumentSerif
+      fonts:
+        - asset: assets/fonts/InstrumentSerif-Regular.ttf
+        - asset: assets/fonts/InstrumentSerif-Italic.ttf
+          style: italic
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/PlusJakartaSans-ExtraBold.ttf
+          weight: 800
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Manrope-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Manrope-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Manrope-ExtraBold.ttf
+          weight: 800
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-Medium.ttf
+          weight: 500
+    - family: SpaceGrotesk
+      fonts:
+        - asset: assets/fonts/SpaceGrotesk-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/SpaceGrotesk-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SpaceGrotesk-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/SpaceGrotesk-Bold.ttf
+          weight: 700
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 800
