@@ -9,8 +9,10 @@ import 'package:provider/provider.dart';
 import '../../app/app_services.dart';
 import '../../core/settings/settings_store.dart';
 import '../../app/brand.dart';
+import '../../app/theme.dart';
 import '../widgets/brand_logo.dart';
 import '../widgets/common.dart';
+import '../widgets/kit.dart';
 import 'identify_screens.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -18,31 +20,40 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget tile(IconData i, String t, String sub, Widget page) => ListTile(
-          leading: Icon(i),
+    final scheme = Theme.of(context).colorScheme;
+    Widget tile(IconData i, String t, String sub, Widget page, {bool accent = false}) => ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+          leading: Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(color: accent ? scheme.primaryContainer : scheme.surfaceContainerHigh, borderRadius: BorderRadius.circular(14)),
+            child: Icon(i, size: 21, color: accent ? scheme.onPrimaryContainer : scheme.onSurface),
+          ),
           title: Text(t),
           subtitle: Text(sub),
-          trailing: const Icon(Icons.chevron_right),
+          trailing: Icon(Icons.chevron_right_rounded, color: scheme.onSurfaceVariant),
           onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page)),
         );
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: ListView(children: [
-        tile(Icons.download, 'Downloads', 'Folder, format, engine, yt-dlp updates', const _DownloadSettings()),
-        tile(Icons.library_music, 'Library', 'Folders to scan, exclusions, minimum length', const _LibrarySettings()),
+      appBar: AppBar(toolbarHeight: screenTitleHeight, title: const ScreenTitle('Settings', eyebrow: Brand.name)),
+      body: ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [
+        tile(Icons.palette_outlined, 'Appearance', 'Palette, typeface, theme, glass', const AppearanceScreen(), accent: true),
+        _sectionTitle(context, 'Music'),
+        tile(Icons.play_circle_outline_rounded, 'Playback', 'Gapless, fade, ReplayGain, headphones', const _PlaybackSettings()),
+        tile(Icons.library_music_outlined, 'Library', 'Folders to scan, exclusions, minimum length', const _LibrarySettings()),
         tile(Icons.sell_outlined, 'Metadata', 'Providers, auto-accept threshold, tag writing', const _MetadataSettings()),
-        tile(Icons.play_circle_outline, 'Playback', 'Gapless, fade, ReplayGain, headphones', const _PlaybackSettings()),
-        tile(Icons.travel_explore, 'Sources', 'Switch online sources on or off', const _SourceSettings()),
-        tile(Icons.key, 'Accounts & API keys', 'Last.fm, ListenBrainz, AcoustID, Genius…', const _AccountSettings()),
-        tile(Icons.palette_outlined, 'Appearance', 'Theme, wallpaper colours', const _AppearanceSettings()),
+        tile(Icons.download_outlined, 'Downloads', 'Folder, format, engine, yt-dlp updates', const _DownloadSettings()),
+        tile(Icons.travel_explore_rounded, 'Sources', 'Switch online sources on or off', const _SourceSettings()),
+        _sectionTitle(context, 'You'),
+        tile(Icons.key_rounded, 'Accounts & API keys', 'Last.fm, ListenBrainz, AcoustID, Genius…', const _AccountSettings()),
         tile(Icons.backup_outlined, 'Backup & restore', 'Playlists, play counts, ratings', const _BackupSettings()),
-        tile(Icons.info_outline, 'About & legal', 'Licences, what you may download', const _AboutScreen()),
+        tile(Icons.info_outline_rounded, 'About & legal', 'Licences, what you may download', const _AboutScreen()),
       ]),
     );
   }
 }
 
-Widget _sectionTitle(BuildContext context, String t) => Padding(padding: const EdgeInsets.fromLTRB(16, 20, 16, 4), child: Text(t, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Theme.of(context).colorScheme.primary)));
+Widget _sectionTitle(BuildContext context, String t) => Padding(padding: const EdgeInsets.fromLTRB(18, 26, 18, 6), child: Eyebrow(t, color: Theme.of(context).colorScheme.primary));
 
 Future<void> _editText(BuildContext context, {required String title, required String initial, required Future<void> Function(String) onSave, bool obscure = false, int lines = 1, String? hint}) async {
   final c = TextEditingController(text: initial);
@@ -429,30 +440,319 @@ class _AccountSettings extends StatelessWidget {
   }
 }
 
-class _AppearanceSettings extends StatelessWidget {
-  const _AppearanceSettings();
+class AppearanceScreen extends StatelessWidget {
+  const AppearanceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final s = context.watch<SettingsStore>();
+    final mode = s.themePreference == ThemePreference.amoled ? ThemePreference.dark : s.themePreference;
     return Scaffold(
-      appBar: AppBar(title: const Text('Appearance')),
-      body: ListView(children: [
-        RadioGroup<ThemePreference>(
-          groupValue: s.themePreference,
-          onChanged: (v) => s.setThemePreference(v!),
-          child: Column(children: [
-            for (final t in ThemePreference.values)
-              RadioListTile<ThemePreference>(
-                title: Text(switch (t) { ThemePreference.system => 'System', ThemePreference.light => 'Light', ThemePreference.dark => 'Dark', ThemePreference.amoled => 'AMOLED black' }),
-                value: t,
+      appBar: AppBar(toolbarHeight: screenTitleHeight, title: const ScreenTitle('Appearance', eyebrow: 'Make it yours')),
+      body: ListView(padding: EdgeInsets.only(bottom: bottomClearance(context)), children: [
+        _sectionTitle(context, 'Theme'),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: SegmentedPills<ThemePreference>(
+            options: const [ThemePreference.system, ThemePreference.light, ThemePreference.dark],
+            selected: mode,
+            label: (m) => switch (m) { ThemePreference.light => 'Light', ThemePreference.dark || ThemePreference.amoled => 'Dark', ThemePreference.system => 'System' },
+            onSelect: s.setThemePreference,
+          ),
+        ),
+        const SizedBox(height: 6),
+        SwitchListTile(
+          title: const Text('Pure black'),
+          subtitle: const Text('Black backgrounds in dark mode, for OLED screens'),
+          value: s.pureBlack,
+          onChanged: mode == ThemePreference.light ? null : s.setPureBlack,
+        ),
+        _sectionTitle(context, 'Palette'),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 4, 12, 0),
+          child: Wrap(
+            spacing: 4,
+            runSpacing: 12,
+            children: [
+              for (final p in AppPalette.values)
+                _PaletteSwatch(
+                  spec: p == AppPalette.custom ? PaletteSpec.custom(s.customHue, s.customTint) : PaletteSpec.of(p),
+                  rainbow: p == AppPalette.custom,
+                  selected: !s.dynamicColor && s.palette == p,
+                  onTap: () => _pickPalette(context, s, p),
+                ),
+            ],
+          ),
+        ),
+        SwitchListTile(
+          title: const Text('Wallpaper colours'),
+          subtitle: const Text('Android 12+. Builds a palette from your wallpaper instead'),
+          value: s.dynamicColor,
+          onChanged: s.setDynamicColor,
+        ),
+        _sectionTitle(context, 'Typeface'),
+        for (final f in FontPairing.values) _TypefaceTile(pairing: f, selected: s.fontPairing == f, onTap: () => s.setFontPairing(f)),
+        _sectionTitle(context, 'Now Playing'),
+        SwitchListTile(title: const Text('Colours from cover art'), subtitle: const Text('Each album tints the player in its own colours'), value: s.coverColors, onChanged: s.setCoverColors),
+        SwitchListTile(title: const Text('Cover colour backdrop'), subtitle: const Text("Fill the player and its lyrics card with the cover's colour"), value: s.ambientBackdrop, onChanged: s.setAmbientBackdrop),
+      ]),
+    );
+  }
+
+  Future<void> _pickPalette(BuildContext context, SettingsStore s, AppPalette p) async {
+    if (p == AppPalette.custom) return showCustomColorSheet(context);
+    if (s.dynamicColor) await s.setDynamicColor(false);
+    await s.setPalette(p);
+  }
+}
+
+/// Opens the custom colour picker (and switches to the custom palette).
+Future<void> showCustomColorSheet(BuildContext context) => showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (_) => const _CustomColorSheet(),
+    );
+
+/// Any colour you like: a rainbow hue slider, quick picks and how much it tints the background.
+/// Changes preview live in the sheet and apply to the app when a slider is released.
+class _CustomColorSheet extends StatefulWidget {
+  const _CustomColorSheet();
+
+  @override
+  State<_CustomColorSheet> createState() => _CustomColorSheetState();
+}
+
+class _CustomColorSheetState extends State<_CustomColorSheet> {
+  late final SettingsStore _s = context.read<SettingsStore>();
+  late double _hue = _s.customHue;
+  late double _tint = _s.customTint;
+
+  static const _quick = <double>[0, 18, 36, 50, 95, 145, 172, 196, 218, 245, 270, 295, 325];
+
+  Future<void> _apply() async {
+    if (_s.dynamicColor) await _s.setDynamicColor(false);
+    await _s.setCustomHue(_hue);
+    await _s.setCustomTint(_tint);
+    if (_s.palette != AppPalette.custom) await _s.setPalette(AppPalette.custom);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    final preview = schemeFor(PaletteSpec.custom(_hue, _tint), t.brightness);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(22, 0, 22, 24),
+      child: SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+          const Eyebrow('Custom colour'),
+          const SizedBox(height: 4),
+          Text('Paint it your way', style: t.textTheme.headlineMedium),
+          const SizedBox(height: 18),
+          // Live preview: the page, an ink pill and an accent button in the new colours.
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(color: preview.surface, borderRadius: BorderRadius.circular(24), border: Border.all(color: preview.outlineVariant)),
+            child: Row(children: [
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('NOW PLAYING', style: t.textTheme.labelSmall?.copyWith(color: preview.primary, letterSpacing: 1.6)),
+                  const SizedBox(height: 4),
+                  Text('Your music', style: t.textTheme.headlineSmall?.copyWith(color: preview.onSurface)),
+                  Text('in your colours', style: t.textTheme.bodySmall?.copyWith(color: preview.onSurfaceVariant)),
+                  const SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    decoration: ShapeDecoration(color: preview.inverseSurface, shape: const StadiumBorder()),
+                    child: Text('Shuffle all', style: t.textTheme.labelLarge?.copyWith(color: preview.onInverseSurface)),
+                  ),
+                ]),
+              ),
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(color: preview.primary, shape: BoxShape.circle),
+                child: Icon(Icons.play_arrow_rounded, size: 34, color: preview.onPrimary),
+              ),
+            ]),
+          ),
+          const SizedBox(height: 22),
+          Text('Colour', style: t.textTheme.titleSmall),
+          const SizedBox(height: 10),
+          _HueSlider(hue: _hue, onChanged: (v) => setState(() => _hue = v), onChangeEnd: (_) => _apply()),
+          const SizedBox(height: 14),
+          Wrap(spacing: 10, runSpacing: 10, children: [
+            for (final h in _quick)
+              Semantics(
+                button: true,
+                label: 'Hue ${h.round()}',
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() => _hue = h);
+                    _apply();
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 150),
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: schemeFor(PaletteSpec.custom(h, _tint), t.brightness).primary,
+                      border: Border.all(color: (_hue - h).abs() < 1 ? t.colorScheme.onSurface : Colors.transparent, width: 2.5),
+                    ),
+                  ),
+                ),
               ),
           ]),
+          const SizedBox(height: 22),
+          Row(children: [
+            Expanded(child: Text('Background tint', style: t.textTheme.titleSmall)),
+            Text(_tint < 0.2 ? 'Neutral' : (_tint < 0.65 ? 'Soft' : 'Rich'), style: t.textTheme.labelMedium?.copyWith(color: t.colorScheme.onSurfaceVariant)),
+          ]),
+          Slider(value: _tint, onChanged: (v) => setState(() => _tint = v), onChangeEnd: (_) => _apply()),
+          const SizedBox(height: 8),
+          PillButton(
+            expand: true,
+            height: 52,
+            label: 'Done',
+            onPressed: () async {
+              await _apply();
+              if (context.mounted) Navigator.pop(context);
+            },
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+/// A slider over a rainbow track.
+class _HueSlider extends StatelessWidget {
+  const _HueSlider({required this.hue, required this.onChanged, required this.onChangeEnd});
+
+  final double hue;
+  final ValueChanged<double> onChanged;
+  final ValueChanged<double> onChangeEnd;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 36,
+      child: Stack(alignment: Alignment.center, children: [
+        Container(
+          height: 14,
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            gradient: LinearGradient(colors: [for (var h = 0; h <= 360; h += 30) HSLColor.fromAHSL(1, (h % 360).toDouble(), 0.75, 0.55).toColor()]),
+          ),
         ),
-        const Divider(),
-        SwitchListTile(title: const Text('Wallpaper colours (Material You)'), subtitle: const Text('Android 12+. Off keeps the Cadence palette'), value: s.dynamicColor, onChanged: s.setDynamicColor),
-        SwitchListTile(title: const Text('Colours from cover art on Now Playing'), value: s.coverColors, onChanged: s.setCoverColors),
+        SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            trackHeight: 14,
+            activeTrackColor: Colors.transparent,
+            inactiveTrackColor: Colors.transparent,
+            thumbColor: Colors.white,
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12, elevation: 3, pressedElevation: 5),
+            trackShape: const RectangularSliderTrackShape(),
+          ),
+          child: Slider(min: 0, max: 360, value: hue.clamp(0, 360), onChanged: onChanged, onChangeEnd: onChangeEnd),
+        ),
       ]),
+    );
+  }
+}
+
+
+/// A palette preview: its paper as a disc with the accent in the middle.
+class _PaletteSwatch extends StatelessWidget {
+  const _PaletteSwatch({required this.spec, required this.selected, required this.onTap, this.rainbow = false});
+
+  final PaletteSpec spec;
+  final bool selected;
+  final VoidCallback onTap;
+
+  /// The custom swatch wears a rainbow ring so it reads as "any colour".
+  final bool rainbow;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    final preview = schemeFor(spec, t.brightness);
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: '${spec.label} palette',
+      excludeSemantics: true,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: onTap,
+        child: SizedBox(
+          width: 76,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: Column(children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                width: 60,
+                height: 60,
+                padding: const EdgeInsets.all(3),
+                decoration: rainbow && !selected
+                    ? BoxDecoration(shape: BoxShape.circle, gradient: SweepGradient(colors: [for (var h = 0; h <= 360; h += 45) HSLColor.fromAHSL(1, (h % 360).toDouble(), 0.8, 0.6).toColor()]))
+                    : BoxDecoration(shape: BoxShape.circle, border: Border.all(color: selected ? t.colorScheme.onSurface : Colors.transparent, width: 2)),
+                child: Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: preview.surface, border: Border.all(color: preview.outlineVariant)),
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(shape: BoxShape.circle, color: preview.primary),
+                    child: selected ? Icon(Icons.check_rounded, size: 16, color: preview.onPrimary) : (rainbow ? Icon(Icons.colorize_rounded, size: 14, color: preview.onPrimary) : null),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(spec.label, style: t.textTheme.labelMedium?.copyWith(color: selected ? t.colorScheme.onSurface : t.colorScheme.onSurfaceVariant)),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A typeface pairing with a live "Aa" sample in its display face.
+class _TypefaceTile extends StatelessWidget {
+  const _TypefaceTile({required this.pairing, required this.selected, required this.onTap});
+
+  final FontPairing pairing;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    final spec = TypeSpec.of(pairing);
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
+      selected: selected,
+      onTap: onTap,
+      leading: Container(
+        width: 52,
+        height: 52,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(color: selected ? t.colorScheme.inverseSurface : t.colorScheme.surfaceContainerHigh, borderRadius: BorderRadius.circular(16)),
+        child: Text('Aa', style: spec.displayStyle(30).copyWith(color: selected ? t.colorScheme.onInverseSurface : t.colorScheme.onSurface, height: 1.1)),
+      ),
+      title: Text(spec.label, style: TextStyle(fontFamily: spec.body, color: t.colorScheme.onSurface)),
+      subtitle: Text(spec.description),
+      trailing: AnimatedOpacity(
+        opacity: selected ? 1 : 0,
+        duration: const Duration(milliseconds: 160),
+        child: Icon(Icons.check_rounded, color: t.colorScheme.primary),
+      ),
     );
   }
 }
