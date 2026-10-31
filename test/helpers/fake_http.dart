@@ -8,7 +8,7 @@ import 'package:musicplayer/core/net/api_cache.dart';
 import 'package:musicplayer/core/net/http_service.dart';
 import 'package:musicplayer/core/net/rate_limiter.dart';
 
-/// Loads test/fixtures/<name> as a string.
+/// Loads `test/fixtures/<name>` as a string.
 String fixture(String name) => File('test/fixtures/$name').readAsStringSync();
 
 dynamic fixtureJson(String name) => jsonDecode(fixture(name));

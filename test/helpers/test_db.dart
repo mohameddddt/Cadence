@@ -1,6 +1,5 @@
 import 'package:musicplayer/core/db/app_database.dart';
 import 'package:musicplayer/core/library/library_repository.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 bool _ffiReady = false;
